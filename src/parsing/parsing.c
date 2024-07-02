@@ -6,15 +6,21 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:02:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/02 18:19:43 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/02 20:17:38 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	extract_settings(struct s_cub_data *cub_data)
+void	check_file_extention(struct s_cub_data *cub_data)
 {
-	
+	char	*ext;
+
+	ext = ft_strrchr(cub_data->utils.map_path, '.');
+	if (!ext || ft_strcmp(ext, FILE_EXTENTION) != 0)
+	{
+		cub_exit(BAD_FILE_EXTENTION, cub_data);
+	}
 }
 
 void	parsing(struct s_cub_data *cub_data)
@@ -23,5 +29,7 @@ void	parsing(struct s_cub_data *cub_data)
 	{
 		cub_exit(BAD_ARGUMENTS, cub_data);
 	}
-	extract_settings
+	cub_data->utils.map_path = cub_data->utils.argv[1];
+	check_file_extention(cub_data);
+	extract_settings(cub_data);
 }

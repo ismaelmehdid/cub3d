@@ -2,7 +2,11 @@ NAME = cub3D
 
 SRCS =	src/cub3D.c \
 		src/parsing/parsing.c \
+		src/parsing/extract_settings.c \
 		src/utils/exit/exit.c \
+		src/utils/other/utils.c \
+		include/get_next_line/get_next_line.c \
+		include/get_next_line/get_next_line_utils.c \
 
 OBJS_DIR = objs/
 OBJS = $(patsubst srcs/%.c,$(OBJS_DIR)%.o,$(SRCS))
