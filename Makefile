@@ -1,12 +1,14 @@
 NAME = cub3D
 
 SRCS =	src/cub3D.c \
+		src/parsing/parsing.c \
+		src/utils/exit/exit.c \
 
 OBJS_DIR = objs/
 OBJS = $(patsubst srcs/%.c,$(OBJS_DIR)%.o,$(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -L includes/libft -L include/minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -L include/libft -L include/minilibx-linux
 
 RM = rm -rf
 

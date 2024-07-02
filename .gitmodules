@@ -4,3 +4,6 @@
 [submodule "include/minilibx-linux"]
 	path = include/minilibx-linux
 	url = https://github.com/ismaelmehdid/minilibx-linux.git
+[submodule "include/get_next_line"]
+	path = include/get_next_line
+	url = https://github.com/ismaelmehdid/get_next_line.git
