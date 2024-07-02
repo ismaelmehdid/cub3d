@@ -1,0 +1,6 @@
+[submodule "include/libft"]
+	path = include/libft
+	url = https://github.com/ismaelmehdid/libft.git
+[submodule "include/minilibx-linux"]
+	path = include/minilibx-linux
+	url = https://github.com/ismaelmehdid/minilibx-linux.git
