@@ -5,10 +5,15 @@ SRCS =	src/cub3D.c \
 		src/parsing/extract_settings.c \
 		src/utils/exit/exit.c \
 		src/utils/other/utils.c \
+		src/utils/exit/free_all.c \
+		src/parsing/store_settings/store_base_settings.c \
+		src/parsing/store_settings/store_colors.c \
+		src/parsing/store_settings/store_map.c \
+		src/parsing/store_settings/store_textures.c \
 		include/get_next_line/get_next_line.c \
 		include/get_next_line/get_next_line_utils.c \
 
-OBJS_DIR = objs/
+OBJS_DIR = ./objs/
 OBJS = $(patsubst srcs/%.c,$(OBJS_DIR)%.o,$(SRCS))
 
 CC = cc
