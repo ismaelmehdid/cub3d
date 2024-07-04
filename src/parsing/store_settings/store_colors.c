@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:49 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 20:10:12 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/04 21:13:12 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,40 @@ static bool	are_only_digits(char **rgb)
 	return (true);
 }
 
+static bool	are_valid_rgb_values(char **rgb_strings)
+{
+	int	i;
+
+	i = 0;
+	if (double_array_len(rgb_strings) != 3 || !are_only_digits(rgb_strings))
+		return (false);
+	while (i < 3)
+	{
+		if (ft_atoi(rgb_strings[i]) > 255)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 static int	check_color_format_and_store(
 	t_cub_data *cub_data,
 	char *color_code,
 	t_color *color,
 	char id)
 {
-	char			**rgb;
+	char	**rgb_strings;
 
-	rgb = ft_split(color_code, ',');
-	if (!rgb)
-		return (1);
-	if (double_array_len(rgb) != 3 || are_only_digits(rgb) == 0)
+	rgb_strings = ft_split(color_code, ',');
+	if (!rgb_strings || !are_valid_rgb_values(rgb_strings))
 	{
-		free_double_array(rgb);
+		free_double_array(rgb_strings);
 		return (1);
 	}
-	color->r = ft_atoi(rgb[0]);
-	color->g = ft_atoi(rgb[1]);
-	color->b = ft_atoi(rgb[2]);
-	free_double_array(rgb);
-	if (color->r > 255 || color->g > 255 || color->b > 255)
-		return (1);
+	color->r = ft_atoi(rgb_strings[0]);
+	color->g = ft_atoi(rgb_strings[1]);
+	color->b = ft_atoi(rgb_strings[2]);
+	free_double_array(rgb_strings);
 	if (id == 'C')
 		cub_data->settings.ceiling_color = color;
 	else
