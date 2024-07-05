@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:27:29 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 17:58:14 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:51:09 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	store_setting(struct s_cub_data *cub_data, char **line_elements, int fd)
 	}
 	else
 	{
-		free_double_array(line_elements);
+		free_double_array(&line_elements);
 		close(fd);
 		cub_exit(BAD_IDENTIFIER, cub_data);
 	}
 	cub_data->utils.settings_already_set++;
-	free_double_array(line_elements);
+	free_double_array(&line_elements);
 }

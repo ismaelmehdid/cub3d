@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:49 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/04 21:13:12 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:53:02 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	check_for_duplicate_settings(
 	if ((id == 'F' && cub_data->settings.floor_color != NULL)
 		|| (id == 'C' && cub_data->settings.ceiling_color != NULL))
 	{
-		free_double_array(line_elements);
+		free_double_array(&line_elements);
 		close (fd);
 		cub_exit(DUPLICATED_SETTING, cub_data);
 	}
@@ -74,13 +74,13 @@ static int	check_color_format_and_store(
 	rgb_strings = ft_split(color_code, ',');
 	if (!rgb_strings || !are_valid_rgb_values(rgb_strings))
 	{
-		free_double_array(rgb_strings);
+		free_double_array(&rgb_strings);
 		return (1);
 	}
 	color->r = ft_atoi(rgb_strings[0]);
 	color->g = ft_atoi(rgb_strings[1]);
 	color->b = ft_atoi(rgb_strings[2]);
-	free_double_array(rgb_strings);
+	free_double_array(&rgb_strings);
 	if (id == 'C')
 		cub_data->settings.ceiling_color = color;
 	else
@@ -101,13 +101,13 @@ int	store_colors(t_cub_data *cub_data, char **line_elements, int fd)
 		color = malloc(sizeof(t_color));
 		if (!color)
 		{
-			free_double_array(line_elements);
+			free_double_array(&line_elements);
 			close(fd);
 			cub_exit(OTHER, cub_data);
 		}
 		if (check_color_format_and_store(cub_data, line_elements[1], color, id))
 		{
-			free_double_array(line_elements);
+			free_double_array(&line_elements);
 			close(fd);
 			cub_exit(BAD_COLOR_CODE_FORMAT, cub_data);
 		}

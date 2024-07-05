@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 17:43:45 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:52:13 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,7 @@ static void	free_colors(t_cub_data *cub_data)
 
 static void	free_map(t_cub_data *cub_data)
 {
-	int	i;
-
-	i = 0;
-	if (cub_data->settings.map)
-	{
-		while (cub_data->settings.map[i])
-		{
-			free(cub_data->settings.map[i]);
-			cub_data->settings.map[i] = NULL;
-			i++;
-		}
-		free(cub_data->settings.map);
-		cub_data->settings.map = NULL;
-	}
+	free_double_array(&cub_data->settings.map);
 }
 
 void	free_everything(t_cub_data *cub_data)

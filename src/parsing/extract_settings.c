@@ -6,62 +6,76 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:56:17 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 20:17:18 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 19:23:35 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void	handle_line(struct s_cub_data *cub_data, char *line, int fd)
+static void handle_error_and_exit(
+	char **line_elements,
+	int fd,
+	t_cub_data *cub_data)
 {
-	char	**line_elements;
-	int		line_length;
-	char	*croped;
-
-	line_length = 0;
-	if (!is_only_spaces(line)) //TODO: protect
-	{
-		line_elements = ft_split(line, ' ');
-		line_length = double_array_len(line_elements);
-		croped = line_elements[line_length - 1];
-		line_elements[line_length - 1] = ft_strtrim(line_elements[line_length - 1], "\n");
-		free(croped);
-		if (cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
-		{
-			if (double_array_len(line_elements) != 2)
-			{
-				free_double_array(line_elements);
-				close (fd);
-				cub_exit(BAD_SETTING_FORMAT, cub_data);
-			}
-			store_setting(cub_data, line_elements, fd);
-		} // else store map
-	}
+    free_double_array(&line_elements);
+    close(fd);
+    cub_exit(BAD_SETTING_FORMAT, cub_data);
 }
 
-// NEED TO CHECK IF
-// 	- Base setting missing before setting the map
-//	- If a setting is doubly present
-//	- Bad format or can't open file path
+static void handle_line(struct s_cub_data *cub_data, char *line, int fd)
+{
+	char	**elements;
+	char	*last_element;
+	int		line_length;
 
-void	extract_settings(struct s_cub_data *cub_data) //TODO: check if there is the right amount of settings
+    if (!is_only_spaces(line))
+    {
+		elements = ft_split(line, ' ');
+        if (!elements)
+            handle_error_and_exit(elements, fd, cub_data);
+        line_length = double_array_len(elements);
+        last_element = elements[line_length - 1];
+        elements[line_length - 1] = ft_strtrim(elements[line_length - 1], "\n");
+        if (!elements[line_length - 1])
+        {
+            free(last_element);
+            handle_error_and_exit(elements, fd, cub_data);
+        }
+        free(last_element);
+        if (cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
+        {
+            if (line_length != EXPECTED_SETTING_PARTS)
+                handle_error_and_exit(elements, fd, cub_data);
+            store_setting(cub_data, elements, fd);
+        }
+    }
+}
+
+static void	handle_line_and_free(t_cub_data *cub_data, char *line, int fd)
+{
+	handle_line(cub_data, line, fd);
+	free(line);
+}
+
+void	extract_settings(struct s_cub_data *cub_data)
 {
 	int		fd;
 	char	*line;
 
 	fd = open(cub_data->utils.map_path, O_RDONLY);
 	if (fd == -1)
-	{
 		cub_exit(OTHER, cub_data);
-	}
 	line = get_next_line(fd);
-	while (line != NULL && cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED) //TODO: remove
+	while (line && cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
 	{
-		handle_line(cub_data, line, fd);
-		free (line);
-		line = NULL;
+		handle_line_and_free(cub_data, line, fd);
 		line = get_next_line(fd);
 	}
-	free(line);
+	if (!line && cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
+	{
+		close (fd);
+		cub_exit(MISSING_SETTING, cub_data);
+	}
+	store_map(cub_data, line, fd);
 	close(fd);
 }

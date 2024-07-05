@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 19:42:53 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:51:37 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	texture_file_opening_test(
 	fd = open(line_elements[1], O_RDONLY);
 	if (fd == -1)
 	{
-		free_double_array(line_elements);
+		free_double_array(&line_elements);
 		close(settings_fd);
 		if (direction == 'E')
 			cub_exit(E_BAD_FILE_PATH, cub_data);
@@ -56,7 +56,7 @@ static void	check_for_duplicate_settings(t_cub_data *cub_data, char direction, c
 		|| (direction == 'S' && cub_data->settings.s_texture_path != NULL)
 		|| (direction == 'W' && cub_data->settings.w_texture_path != NULL))
 	{
-		free_double_array(line_elements);
+		free_double_array(&line_elements);
 		close (fd);
 		cub_exit(DUPLICATED_SETTING, cub_data);
 	}
@@ -80,7 +80,7 @@ int	store_texture_path(t_cub_data *cub_data, char **line_elements, int fd)
 		if (!path)
 		{
 			close(fd);
-			free_double_array(line_elements);
+			free_double_array(&line_elements);
 			cub_exit(OTHER, cub_data);
 		}
 		store_texture_path_ptr(cub_data, direction, path);

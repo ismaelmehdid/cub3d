@@ -6,27 +6,27 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:15:28 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 15:47:54 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 19:35:45 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
 
-void	free_double_array(char **array)
+void	free_double_array(char ***array_ptr)
 {
 	int	i;
 
 	i = 0;
-	if (array)
+	if (*array_ptr)
 	{
-		while (array[i])
+		while ((*array_ptr)[i])
 		{
-			free(array[i]);
-			array[i] = NULL;
+			free((*array_ptr)[i]);
+			(*array_ptr)[i] = NULL;
 			i++;
 		}
-		free(array);
-		array = NULL;
+		free(*array_ptr);
+		*array_ptr = NULL;
 	}
 }
 
@@ -66,10 +66,10 @@ bool	is_space(char check)
 
 int	ft_strcmp(const char *first, const char *second)
 {
-    while (*first && (*first == *second))
-    {
-        first++;
-        second++;
-    }
-    return *(unsigned char *)first - *(unsigned char *)second;
+	while (*first && (*first == *second))
+	{
+		first++;
+		second++;
+	}
+	return (*(unsigned char *)first - *(unsigned char *)second);
 }
