@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 17:45:16 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/05 18:38:20 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	debug_print_settings(t_cub_data	*cub_data)
 	printf("Floor color: %u, %u, %u", cub_data->settings.floor_color->r, cub_data->settings.floor_color->g, cub_data->settings.floor_color->b);
 }
 
-void	load_mlx(t_cub_data *data)
+static void	load_mlx(t_cub_data *data)
 {
 	data->mlx.mlx_ptr = mlx_init();
 	if (!data->mlx.mlx_ptr)
@@ -51,9 +51,6 @@ int	main(int argc, char **argv)
 	cub_data.utils.argv = argv;
 	parsing(&cub_data);
 	debug_print_settings(&cub_data);
-	cub_data.mlx.mlx_ptr = mlx_init();
-	if (!cub_data.mlx.mlx_ptr)
-		cub_exit(0, &cub_data); // bad code
 	load_mlx(&cub_data);
 	mlx_loop(cub_data.mlx.mlx_ptr);
 	free_everything(&cub_data);
