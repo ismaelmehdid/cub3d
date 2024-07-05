@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 18:18:08 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:30:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,24 @@ typedef struct s_cub_settings
 	char			**map;
 }	t_cub_settings;
 
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img;
+	char	*addr;
+	int		height;
+	int		width;
+	int		bits;
+	int		line_len;
+	int		edian;
+}	t_mlx;
+
 typedef struct s_cub_data
 {
 	struct s_cub_settings	settings;
 	struct s_cub_utils		utils;
+	struct s_mlx			mlx;
 }	t_cub_data;
 
 //=== Parsing -------------------------------------------------------------===//
