@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 19:52:24 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 00:03:50 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define BASE_SETTINGS_REQUIRED 6 // TEXTURES PATH, FLOOR AND CEILING COLORS
 # define ARGUMENTS_REQUIRED 2
 # define FILE_EXTENTION ".cub"
+
+//=== Keys --------------------------------------------------------------===//
+
+# define ESC 65307
 
 //=== Data structures -----------------------------------------------------===//
 

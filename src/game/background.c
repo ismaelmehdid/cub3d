@@ -55,5 +55,4 @@ void	fill_background(t_cub_data *data, int x, int y)
         }
 		y++;
     }
-    mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->mlx.img, 0, 0);
 }
