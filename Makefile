@@ -27,7 +27,7 @@ LIBFT_DIR	= include/libft/libft.a
 
 MLX_DIR		= include/minilibx-linux
 
-MLX_LINK	= -L$(MLX_DIR) -Imlx
+MLX_LINK	= -L$(MLX_DIR) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 MATH_FLAG	= -lm
 
