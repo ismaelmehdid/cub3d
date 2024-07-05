@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 19:41:34 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 19:52:24 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,24 @@ typedef struct s_cub_settings
 	char			**map;
 }	t_cub_settings;
 
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img;
+	char	*addr;
+	int		height;
+	int		width;
+	int		bits;
+	int		line_len;
+	int		edian;
+}	t_mlx;
+
 typedef struct s_cub_data
 {
 	struct s_cub_settings	settings;
 	struct s_cub_utils		utils;
+	struct s_mlx			mlx;
 }	t_cub_data;
 
 typedef struct s_map_params // Specific struct helping for map parsing
@@ -100,6 +114,11 @@ void	store_setting(struct s_cub_data *cub_data, char **elements, int fd);
 int		store_texture_path(t_cub_data *cub_data, char **line_elements, int fd);
 int		store_colors(t_cub_data *cub_data, char **line_elements, int fd);
 void	store_map(t_cub_data *cub_data, char *line, int fd);
+
+//=== Game ----------------------------------------------------------------===//
+
+void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
+void	fill_background(t_cub_data *data, int x, int y);
 
 //=== Utils ---------------------------------------------------------------===//
 

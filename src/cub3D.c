@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 19:34:41 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/05 19:52:43 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ void	debug_print_settings(t_cub_data	*cub_data)
 	}
 }
 
+static void	load_mlx(t_cub_data *data)
+{
+	data->mlx.mlx_ptr = mlx_init();
+	if (!data->mlx.mlx_ptr)
+		cub_exit(0, data); // bad code
+	mlx_get_screen_size(data->mlx.mlx_ptr,
+		&data->mlx.width, &data->mlx.height);
+	data->mlx.win_ptr = mlx_new_window(data->mlx.mlx_ptr,
+		data->mlx.width, data->mlx.height, "cub3D");
+	if (!data->mlx.win_ptr)
+	{
+		free(data->mlx.mlx_ptr);
+		cub_exit(0, data); // bad code
+	}
+	data->mlx.img = mlx_new_image(data->mlx.mlx_ptr, data->mlx.width,
+		data->mlx.height);
+	data->mlx.addr = mlx_get_data_addr(data->mlx.img, 
+		&data->mlx.bits, &data->mlx.line_len, &data->mlx.edian);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub_data	cub_data;
@@ -38,6 +58,9 @@ int	main(int argc, char **argv)
 	cub_data.utils.argv = argv;
 	parsing(&cub_data);
 	debug_print_settings(&cub_data);
+	load_mlx(&cub_data);
+	fill_background(&cub_data, 0, 0);
+	mlx_loop(cub_data.mlx.mlx_ptr);
 	free_everything(&cub_data);
 	return (0);
 }

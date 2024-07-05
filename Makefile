@@ -13,25 +13,36 @@ SRCS =	src/cub3D.c \
 		src/parsing/store_settings/store_colors.c \
 		src/parsing/store_settings/store_map.c \
 		src/parsing/store_settings/store_textures.c \
+		src/game/background.c \
+		src/game/ft_pixel_put.c \
 		include/get_next_line/get_next_line.c \
 		include/get_next_line/get_next_line_utils.c \
 
 OBJS_DIR = ./objs/
 OBJS = $(patsubst srcs/%.c,$(OBJS_DIR)%.o,$(SRCS))
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -L include/libft -L include/minilibx-linux
+CC			= cc
 
-RM = rm -rf
+LIBFT_DIR	= include/libft/libft.a
 
-CLEAR = clear
+MLX_DIR		= include/minilibx-linux
+
+MLX_LINK	= -L$(MLX_DIR) -lmlx -lXext -lX11
+
+MATH_FLAG	= -lm
+
+RM			= rm -rf
+
+CLEAR 		= clear
+
+CFLAGS		= -Wall -Wextra -Werror -Iinclude
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C ./include/libft
-	@$(MAKE) -C include/minilibx-linux
-	@$(CC) $(CFLAGS) $(OBJS) ./include/libft/libft.a -o $(NAME)
+	@$(MAKE) -C $(MLX_DIR)
+	@$(MAKE) -sC include/libft
+	@$(CC) $(CFLAGS) $(MATH_FLAG) $(OBJS) $(MLX_LINK) $(LIBFT_DIR) -o $(NAME)
 	@$(CLEAR)
 	@printf "\033[1;32m$(NAME) built successfully\033[0m\n"
 
@@ -41,10 +52,12 @@ $(OBJS_DIR)%.o: srcs/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(MAKE) -C ./include/libft fclean
+	make clean -sC include/libft
 	@$(RM) $(OBJS_DIR)
 
 fclean: clean
+	make fclean -sC include/libft
+	make clean -C include/minilibx-linux
 	@$(RM) $(NAME)
 
 re: fclean all
