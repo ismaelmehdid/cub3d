@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 18:29:13 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/05 19:04:37 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,10 @@ void	extract_settings(struct s_cub_data *cub_data);
 void	store_setting(struct s_cub_data *cub_data, char **line_elements, int fd);
 int		store_texture_path(t_cub_data *cub_data, char **line_elements, int fd);
 int		store_colors(t_cub_data *cub_data, char **line_elements, int fd);
+
+//=== Game -------------------------------------------------------------===//
+void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
+void	fill_background(t_cub_data *data, int x, int y);
 
 //=== Utils -------------------------------------------------------------===//
 

@@ -10,6 +10,8 @@ SRCS =	src/cub3D.c \
 		src/parsing/store_settings/store_colors.c \
 		src/parsing/store_settings/store_map.c \
 		src/parsing/store_settings/store_textures.c \
+		src/game/background.c \
+		src/game/ft_pixel_put.c \
 		include/get_next_line/get_next_line.c \
 		include/get_next_line/get_next_line_utils.c \
 

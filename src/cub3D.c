@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 18:38:20 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/05 18:55:09 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	parsing(&cub_data);
 	debug_print_settings(&cub_data);
 	load_mlx(&cub_data);
+	fill_background(&cub_data, 0, 0);
 	mlx_loop(cub_data.mlx.mlx_ptr);
 	free_everything(&cub_data);
 	return (0);
