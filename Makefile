@@ -12,6 +12,7 @@ SRCS =	src/cub3D.c \
 		src/utils/other/utils.c \
 		src/utils/exit/free_all.c \
 		src/parsing/store_settings/store_base_settings.c \
+		src/parsing/store_settings/store_player_pos.c \
 		src/parsing/store_settings/store_colors.c \
 		src/parsing/store_settings/store_map.c \
 		src/parsing/store_settings/store_textures.c \

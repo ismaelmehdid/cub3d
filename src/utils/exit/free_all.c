@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/06 22:53:13 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 23:48:41 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ static void	destroy_mlx(t_cub_data *cub_data)
 	if (cub_data->mlx.mlx_ptr)
 		mlx_destroy_display(cub_data->mlx.mlx_ptr);
 	if (cub_data->mlx.mlx_ptr)
+	{
 		free(cub_data->mlx.mlx_ptr);
+		cub_data->mlx.mlx_ptr = NULL;
+	}
 }
 
 void	free_everything(t_cub_data *cub_data)

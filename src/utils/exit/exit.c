@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:30:40 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/06 22:48:49 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 01:00:55 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ void	cub_exit(t_errors code, t_cub_data *cub_data)
 	else if (code == MLX_ERROR)
 	{
 		mlx_error();
+	}
+	else if (code == MAP_WRONG_CHARACTER)
+	{
+		map_wrong_character_error();
+	}
+	else if (code == MAP_DUPLICATED_PLAYER_SPAWN_POS)
+	{
+		map_duplicated_player_spawn_pos();
+	}
+	else if (code == MAP_MISSING_PLAYER_SPAWN_POS)
+	{
+		map_missing_player_spawn_pos();
 	}
 	free_everything(cub_data);
 	if (code == SUCCESS)

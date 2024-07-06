@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/06 22:47:55 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 00:59:23 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ typedef enum s_errors
 	MAP_MISSING,
 	MAP_UNCLOSED,
 	MAP_WRONG_CHARACTER,
-	MAP_MISSING_CHARACTER,
+	MAP_MISSING_PLAYER_SPAWN_POS,
+	MAP_DUPLICATED_PLAYER_SPAWN_POS,
 	OTHER
 }	t_errors;
 
@@ -110,7 +111,7 @@ typedef struct s_player_data
 {
 	int				x;
 	int				y;
-	t_poles			pole;
+	char			pole;
 }	t_player_data;
 
 typedef struct s_cub_data
@@ -118,6 +119,7 @@ typedef struct s_cub_data
 	struct s_cub_settings	settings;
 	struct s_cub_utils		utils;
 	struct s_mlx			mlx;
+	struct s_player_data	player_data;
 }	t_cub_data;
 
 typedef struct s_map_params // Specific struct helping for map parsing
@@ -136,6 +138,7 @@ void	store_setting(struct s_cub_data *cub_data, char **elements, int fd);
 int		store_texture_path(t_cub_data *cub_data, char **line_elements, int fd);
 int		store_colors(t_cub_data *cub_data, char **line_elements, int fd);
 void	store_map(t_cub_data *cub_data, char *line, int fd);
+void	store_player_pos(t_cub_data *cub_data);
 void	check_map_validity(t_cub_data *cub_data);
 
 //=== Game ----------------------------------------------------------------===//
@@ -170,5 +173,8 @@ void	bad_identifier_error();
 void	missing_map_error();
 void	unclosed_map_error();
 void	mlx_error();
+void	map_wrong_character_error();
+void	map_duplicated_player_spawn_pos();
+void	map_missing_player_spawn_pos();
 
 #endif
