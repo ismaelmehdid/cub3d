@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:02:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/03 19:20:18 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 22:58:12 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ static void	init_cub_data(struct s_cub_data *cub_data)
 	cub_data->settings.w_texture_path = NULL;
 	cub_data->settings.map = NULL;
 	cub_data->utils.map_path = NULL;
+	cub_data->mlx.mlx_ptr = NULL;
+	cub_data->mlx.win_ptr = NULL;
+	cub_data->mlx.img = NULL;
+	cub_data->mlx.addr = NULL;
 }
 
 static void	check_file_extention(struct s_cub_data *cub_data)

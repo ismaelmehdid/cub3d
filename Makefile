@@ -2,11 +2,13 @@ NAME = cub3D
 
 SRCS =	src/cub3D.c \
 		src/parsing/parsing.c \
+		src/parsing/check_map_validity.c \
 		src/parsing/extract_settings.c \
 		src/utils/exit/exit.c \
 		src/utils/exit/exit_messages/exit_messages1.c \
 		src/utils/exit/exit_messages/exit_messages2.c \
 		src/utils/exit/exit_messages/exit_messages3.c \
+		src/utils/exit/exit_messages/exit_messages4.c \
 		src/utils/other/utils.c \
 		src/utils/exit/free_all.c \
 		src/parsing/store_settings/store_base_settings.c \

@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/06 00:03:50 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 22:47:55 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,18 @@
 
 //=== Data structures -----------------------------------------------------===//
 
+typedef enum s_poles
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}	t_poles;
+
 typedef enum s_errors
 {
+	SUCCESS,
+	MLX_ERROR,
 	BAD_ARGUMENTS,
 	MISSING_SETTING,
 	E_BAD_FILE_PATH,
@@ -50,6 +60,7 @@ typedef enum s_errors
 	BAD_COLOR_CODE_FORMAT,
 	BAD_FILE_EXTENTION,
 	BAD_IDENTIFIER,
+	MAP_MISSING,
 	MAP_UNCLOSED,
 	MAP_WRONG_CHARACTER,
 	MAP_MISSING_CHARACTER,
@@ -95,6 +106,13 @@ typedef struct s_mlx
 	int		edian;
 }	t_mlx;
 
+typedef struct s_player_data
+{
+	int				x;
+	int				y;
+	t_poles			pole;
+}	t_player_data;
+
 typedef struct s_cub_data
 {
 	struct s_cub_settings	settings;
@@ -118,6 +136,7 @@ void	store_setting(struct s_cub_data *cub_data, char **elements, int fd);
 int		store_texture_path(t_cub_data *cub_data, char **line_elements, int fd);
 int		store_colors(t_cub_data *cub_data, char **line_elements, int fd);
 void	store_map(t_cub_data *cub_data, char *line, int fd);
+void	check_map_validity(t_cub_data *cub_data);
 
 //=== Game ----------------------------------------------------------------===//
 
@@ -148,5 +167,8 @@ void	west_bad_file_path_error();
 void	bad_color_code_format_error();
 void	missing_setting_error();
 void	bad_identifier_error();
+void	missing_map_error();
+void	unclosed_map_error();
+void	mlx_error();
 
 #endif

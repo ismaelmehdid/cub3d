@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 19:38:05 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 19:41:22 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 21:52:26 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,19 @@ void	missing_setting_error()
 {
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putstr_fd("\033[0;31mMissing setting.\n",
+		STDERR_FILENO);
+}
+
+void	missing_map_error()
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd("\033[0;31mMissing map.\n",
+		STDERR_FILENO);
+}
+
+void	unclosed_map_error()
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd("\033[0;31mUnclosed map.\n",
 		STDERR_FILENO);
 }

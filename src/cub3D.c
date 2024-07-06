@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 23:50:58 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 22:54:13 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,12 @@ void	debug_print_settings(t_cub_data	*cub_data)
 	}
 }
 
-static int	close_window(t_cub_data **data)
-{
-	mlx_destroy_image((*data)->mlx.mlx_ptr, (*data)->mlx.img);
-	mlx_destroy_window((*data)->mlx.mlx_ptr, (*data)->mlx.win_ptr);
-	mlx_destroy_display((*data)->mlx.mlx_ptr);
-	free_everything(*data);
-	free((*data)->mlx.mlx_ptr);
-	exit (0);
-}
-
 static int	key_hook(int keycode, t_cub_data **data)
 {
 	if (keycode == ESC)
-		close_window(data);
+		cub_exit(SUCCESS, *data);
 	//control_moves(keycode, data); add later
 	return (0);
-}
-
-static void	close_program(t_cub_data *data)
-{
-	mlx_destroy_image(data->mlx.mlx_ptr, data->mlx.img);
-	mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.win_ptr);
-	mlx_destroy_display(data->mlx.mlx_ptr);
-	free_everything(data);
-	free(data->mlx.mlx_ptr);
-	exit (0);
 }
 
 static void	game_loop(t_cub_data *data)
@@ -64,16 +44,15 @@ static void	game_loop(t_cub_data *data)
 	// ray-casting algo here
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->mlx.img, 0, 0);
 	mlx_hook(data->mlx.win_ptr, 2, 1L << 0, (void *)key_hook, &data);
-	mlx_hook(data->mlx.win_ptr, 17, 1L << 17, (void *)close_window, &data);
+	mlx_hook(data->mlx.win_ptr, 17, 1L << 17, (void *)free_everything, &data);
 	mlx_loop(data->mlx.mlx_ptr);
-
 }
 
 static void	load_mlx(t_cub_data *data)
 {
 	data->mlx.mlx_ptr = mlx_init();
 	if (!data->mlx.mlx_ptr)
-		cub_exit(0, data); // bad code
+		cub_exit(MLX_ERROR, data); // bad code
 	mlx_get_screen_size(data->mlx.mlx_ptr,
 		&data->mlx.width, &data->mlx.height);
 	data->mlx.win_ptr = mlx_new_window(data->mlx.mlx_ptr,
@@ -81,7 +60,7 @@ static void	load_mlx(t_cub_data *data)
 	if (!data->mlx.win_ptr)
 	{
 		free(data->mlx.mlx_ptr);
-		cub_exit(0, data); // bad code
+		cub_exit(MLX_ERROR, data); // bad code
 	}
 	data->mlx.img = mlx_new_image(data->mlx.mlx_ptr, data->mlx.width,
 		data->mlx.height);
@@ -99,6 +78,5 @@ int	main(int argc, char **argv)
 	debug_print_settings(&cub_data);
 	load_mlx(&cub_data);
 	game_loop(&cub_data);
-	close_program(&cub_data);
 	return (0);
 }

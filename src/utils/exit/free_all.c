@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 17:52:13 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 22:53:13 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,22 @@ static void	free_map(t_cub_data *cub_data)
 	free_double_array(&cub_data->settings.map);
 }
 
+static void	destroy_mlx(t_cub_data *cub_data)
+{
+	if (cub_data->mlx.mlx_ptr && cub_data->mlx.img)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->mlx.img);
+	if (cub_data->mlx.mlx_ptr && cub_data->mlx.win_ptr)
+		mlx_destroy_window(cub_data->mlx.mlx_ptr, cub_data->mlx.win_ptr);
+	if (cub_data->mlx.mlx_ptr)
+		mlx_destroy_display(cub_data->mlx.mlx_ptr);
+	if (cub_data->mlx.mlx_ptr)
+		free(cub_data->mlx.mlx_ptr);
+}
+
 void	free_everything(t_cub_data *cub_data)
 {
 	free_texture_path(cub_data);
 	free_colors(cub_data);
 	free_map(cub_data);
+	destroy_mlx(cub_data);
 }

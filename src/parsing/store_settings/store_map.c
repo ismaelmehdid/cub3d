@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:52 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 19:33:22 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 21:40:33 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void	store_map(t_cub_data *cub_data, char *old_line, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	// TODO: Check map validity
+	check_map_validity(cub_data);
 }

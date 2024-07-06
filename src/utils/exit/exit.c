@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:30:40 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 19:51:01 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/06 22:48:49 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,20 @@ void	cub_exit(t_errors code, t_cub_data *cub_data)
 	{
 		missing_setting_error();
 	}
+	else if (code == MAP_MISSING)
+	{
+		missing_map_error();
+	}
+	else if (code == MAP_UNCLOSED)
+	{
+		unclosed_map_error();
+	}
+	else if (code == MLX_ERROR)
+	{
+		mlx_error();
+	}
 	free_everything(cub_data);
+	if (code == SUCCESS)
+		exit(SUCCESS);
 	exit(EXIT_FAILURE);
 }
