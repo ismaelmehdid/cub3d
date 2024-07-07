@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 00:59:23 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 15:42:56 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@
 //=== Keys --------------------------------------------------------------===//
 
 # define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define left_arrow 65361
+# define right_arrow 65363
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -145,6 +151,7 @@ void	check_map_validity(t_cub_data *cub_data);
 
 void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
+int		key_hook(int keycode, t_cub_data **data);
 
 //=== Utils ---------------------------------------------------------------===//
 

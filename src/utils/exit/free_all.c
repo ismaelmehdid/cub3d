@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/06 23:48:41 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 15:54:47 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	free_everything(t_cub_data *cub_data)
 	free_colors(cub_data);
 	free_map(cub_data);
 	destroy_mlx(cub_data);
+	exit (0);
 }

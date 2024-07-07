@@ -18,6 +18,7 @@ SRCS =	src/cub3D.c \
 		src/parsing/store_settings/store_textures.c \
 		src/game/background.c \
 		src/game/ft_pixel_put.c \
+		src/game/key_controls.c \
 		include/get_next_line/get_next_line.c \
 		include/get_next_line/get_next_line_utils.c \
 
@@ -51,7 +52,7 @@ $(NAME): $(OBJS)
 
 $(OBJS_DIR)%.o: srcs/%.c
 	mkdir -p $(dir $@)
-	printf "\033[1;36mCompiling $<\033[0m\n"
+	@printf "\033[1;36mCompiling $<\033[0m\n"
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

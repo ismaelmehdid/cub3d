@@ -10,4 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/cub3D.h"
 
+int	key_hook(int keycode, t_cub_data **data)
+{
+	if (keycode == ESC)
+		cub_exit(SUCCESS, *data);
+    /*if (keycode == W)
+    if (keycode == A)
+    if (keycode == S)
+    if (keycode == D)
+    if (keycode == left_arrow)
+    if (keycode == right_arrow)*/
+	return (0);
+}

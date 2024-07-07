@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/06 22:54:13 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 15:53:36 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,13 @@ void	debug_print_settings(t_cub_data	*cub_data)
 	}
 }
 
-static int	key_hook(int keycode, t_cub_data **data)
-{
-	if (keycode == ESC)
-		cub_exit(SUCCESS, *data);
-	//control_moves(keycode, data); add later
-	return (0);
-}
-
 static void	game_loop(t_cub_data *data)
 {
 	fill_background(data, 0, 0);
 	// ray-casting algo here
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->mlx.img, 0, 0);
 	mlx_hook(data->mlx.win_ptr, 2, 1L << 0, (void *)key_hook, &data);
-	mlx_hook(data->mlx.win_ptr, 17, 1L << 17, (void *)free_everything, &data);
+	mlx_hook(data->mlx.win_ptr, 17, 1L << 17, (void *)free_everything, &(*data));
 	mlx_loop(data->mlx.mlx_ptr);
 }
 
