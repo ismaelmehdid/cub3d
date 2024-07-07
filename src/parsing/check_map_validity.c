@@ -6,115 +6,67 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:31:28 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 00:42:39 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 17:34:08 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static bool	check_neighbour_cases(char **map, int i, int j)
+static bool	check_neighbours(char **map, int i, int j, int map_height)
 {
-	if (j > 0 && map[j - 1][i] != '1' && map[j - 1][i] != ' ')
-		return (false);
-	if (map[j + 1] && map[j + 1][i] != '1' && map[j + 1][i] != ' ')
-		return (false);
-	if (i > 0 && map[j][i - 1] != '1' && map[j][i - 1] != ' ')
-		return (false);
-	if (map[j][i + 1] != '1' && map[j][i + 1] != ' ')
-		return (false);
-	if (j > 0 && i > 0 && map[j - 1][i - 1] != '1' && map[j - 1][i - 1] != ' ')
-		return (false);
-	if (j > 0 && map[j - 1][i + 1] != '1' && map[j - 1][i + 1] != ' ')
-		return (false);
-	if (map[j + 1] && i > 0
-		&& map[j + 1][i - 1] != '1' && map[j + 1][i - 1] != ' ')
-		return (false);
-	if (map[j + 1] && map[j + 1][i + 1] != '1' && map[j + 1][i + 1] != ' ')
-		return (false);
+	int	y;
+	int	x;
+	int	ni;
+	int	nj;
+
+	y = -1;
+	while (y <= 1)
+	{
+		x = -1;
+		while (x <= 1)
+		{
+			ni = i + x;
+			nj = j + y;
+			if (nj < 0 || nj >= map_height || ni < 0 || ni >= ft_strlen(map[nj]) || !map[nj][ni] || map[nj][ni] == ' ')
+				return (false);
+			x++;
+		}
+		y++;
+	}
 	return (true);
 }
 
-static bool	check_void_spaces_and_sides(char **map)
+static void	check_map_closed(t_cub_data *cub_data, char **map)
 {
 	int	i;
 	int	j;
-	int	length;
+	int	map_height;
 
 	i = 0;
 	j = 0;
-	while (map[j])
+	map_height = double_array_len(map);
+	while (j < map_height)
 	{
-		length = ft_strlen(map[j]);
-		if ((map[j][0] != '1' && map[j][0] != ' ')
-			|| (map[j][length - 1] != '1' && map[j][length - 1] != ' '))
-			return (false);
+		i = 0;
 		while (map[j][i])
 		{
-			if (map[j][i] == ' ')
+			if (map[j][i] != '0' && map[j][i] != '1' && map[j][i] != ' '
+				&& !is_player_spawn_pos(map[j][i]))
+				cub_exit(MAP_WRONG_CHARACTER, cub_data);
+			if (map[j][i] == '0' || is_player_spawn_pos(map[j][i]))
 			{
-				if (!check_neighbour_cases(map, i, j))
-					return (false);
+				if (!check_neighbours(map, i, j, map_height))
+					cub_exit(MAP_UNCLOSED, cub_data);
 			}
 			i++;
 		}
-		i = 0;
 		j++;
 	}
-	return (true);
-}
-
-static bool	is_map_closed(char **map)
-{
-	int	i;
-	int	length;
-
-	i = 0;
-	length = double_array_len(map);
-	while (map[0][i])
-	{
-		if (map[0][i] != '1' && map[0][i] != ' ')
-			return (false);
-		i++;
-	}
-	i = 0;
-	while (map[length - 1][i])
-	{
-		if (map[length - 1][i] != '1' && map[length - 1][i] != ' ')
-			return (false);
-		i++;
-	}
-	return (check_void_spaces_and_sides(map));
-}
-
-static bool	check_invalid_characters(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[j])
-	{
-		while (map[j][i])
-		{
-			if (map[j][i] != 'N' && map[j][i] != 'S' && map[j][i] != 'E'
-				&& map[j][i] != 'W' && map[j][i] != '0' && map[j][i] != '1'
-				&& map[j][i] != ' ')
-				return (false);
-			i++;
-		}
-		i = 0;
-		j++;
-	}
-	return (true);
 }
 
 void	check_map_validity(t_cub_data *cub_data)
 {
 	if (!cub_data->settings.map)
 		cub_exit(MAP_MISSING, cub_data);
-	if (!is_map_closed(cub_data->settings.map))
-		cub_exit(MAP_UNCLOSED, cub_data);
-	if (!check_invalid_characters(cub_data->settings.map))
-		cub_exit(MAP_WRONG_CHARACTER, cub_data);
+	check_map_closed(cub_data, cub_data->settings.map);
 }

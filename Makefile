@@ -10,6 +10,7 @@ SRCS =	src/cub3D.c \
 		src/utils/exit/exit_messages/exit_messages3.c \
 		src/utils/exit/exit_messages/exit_messages4.c \
 		src/utils/other/utils.c \
+		src/utils/other/utils2.c \
 		src/utils/exit/free_all.c \
 		src/parsing/store_settings/store_base_settings.c \
 		src/parsing/store_settings/store_player_pos.c \

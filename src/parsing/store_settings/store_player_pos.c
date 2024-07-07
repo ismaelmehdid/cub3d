@@ -6,16 +6,11 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 00:57:57 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 01:05:08 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 16:33:52 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
-
-static bool	is_player_spawn_pos(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
 
 static void	check_if_player_pos(t_cub_data *cub_data, bool *set, int i, int j)
 {

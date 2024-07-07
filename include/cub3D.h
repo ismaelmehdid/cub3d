@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 00:59:23 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 16:34:19 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ bool	is_only_spaces(char *line);
 bool	is_space(char check);
 int		double_array_len(char **array);
 void	free_double_array(char ***array);
+bool	is_player_spawn_pos(char c);
 
 //=== Exit messages -------------------------------------------------------===//
 
