@@ -30,7 +30,7 @@ LIBFT_DIR	= include/libft/libft.a
 
 MLX_DIR		= include/minilibx-linux
 
-MLX_LINK	= -L$(MLX_DIR) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX_LINK	= -L$(MLX_DIR) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm # -lz can't compile this
 
 MATH_FLAG	= -lm
 
@@ -43,25 +43,25 @@ CFLAGS		= -Wall -Wextra -Werror -Iinclude
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(MLX_DIR)
-	@$(MAKE) -sC include/libft
-	@$(CC) $(CFLAGS) $(MATH_FLAG) $(OBJS) $(MLX_LINK) $(LIBFT_DIR) -o $(NAME)
-	@$(CLEAR)
+	$(MAKE) -C $(MLX_DIR)
+	$(MAKE) -sC include/libft
+	$(CC) $(CFLAGS) $(MATH_FLAG) $(OBJS) $(MLX_LINK) $(LIBFT_DIR) -o $(NAME)
+	$(CLEAR)
 	@printf "\033[1;32m$(NAME) built successfully\033[0m\n"
 
 $(OBJS_DIR)%.o: srcs/%.c
-	@mkdir -p $(dir $@)
-	@printf "\033[1;36mCompiling $<\033[0m\n"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	mkdir -p $(dir $@)
+	printf "\033[1;36mCompiling $<\033[0m\n"
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -sC include/libft
-	@$(RM) $(OBJS_DIR)
+	$(RM) $(OBJS_DIR)
 
 fclean: clean
 	make fclean -sC include/libft
 	make clean -C include/minilibx-linux
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
