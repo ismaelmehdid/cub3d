@@ -1,28 +1,5 @@
 NAME = cub3D
 
-<<<<<<< HEAD
-SRCS =	src/cub3D.c \
-		src/parsing/parsing.c \
-		src/parsing/check_map_validity.c \
-		src/parsing/extract_settings.c \
-		src/utils/exit/exit.c \
-		src/utils/exit/exit_messages/exit_messages1.c \
-		src/utils/exit/exit_messages/exit_messages2.c \
-		src/utils/exit/exit_messages/exit_messages3.c \
-		src/utils/exit/exit_messages/exit_messages4.c \
-		src/utils/other/utils.c \
-		src/utils/other/utils2.c \
-		src/utils/exit/free_all.c \
-		src/parsing/store_settings/store_base_settings.c \
-		src/parsing/store_settings/store_player_pos.c \
-		src/parsing/store_settings/store_colors.c \
-		src/parsing/store_settings/store_map.c \
-		src/parsing/store_settings/store_textures.c \
-		src/game/background.c \
-		src/game/ft_pixel_put.c \
-		include/get_next_line/get_next_line.c \
-		include/get_next_line/get_next_line_utils.c \
-=======
 SRCS =  src/cub3D.c \
         src/parsing/parsing.c \
         src/parsing/check_map_validity.c \
@@ -33,6 +10,7 @@ SRCS =  src/cub3D.c \
         src/utils/exit/exit_messages/exit_messages3.c \
         src/utils/exit/exit_messages/exit_messages4.c \
         src/utils/other/utils.c \
+		src/utils/other/utils2.c \
         src/utils/exit/free_all.c \
         src/parsing/store_settings/store_base_settings.c \
         src/parsing/store_settings/store_player_pos.c \
@@ -45,7 +23,6 @@ SRCS =  src/cub3D.c \
         src/game/game_algorithm.c \
         include/get_next_line/get_next_line.c \
         include/get_next_line/get_next_line_utils.c \
->>>>>>> 15bceb90608bef1a3dd1ff5f4ca648932db3478d
 
 OBJS_DIR = ./objs/
 OBJS = $(patsubst src/%.c,$(OBJS_DIR)%.o,$(SRCS))
