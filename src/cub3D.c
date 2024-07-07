@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 15:53:36 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/07 16:02:38 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	debug_print_settings(t_cub_data	*cub_data)
 
 static void	game_loop(t_cub_data *data)
 {
-	fill_background(data, 0, 0);
-	// ray-casting algo here
+	game_algorithm(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->mlx.img, 0, 0);
 	mlx_hook(data->mlx.win_ptr, 2, 1L << 0, (void *)key_hook, &data);
 	mlx_hook(data->mlx.win_ptr, 17, 1L << 17, (void *)free_everything, &(*data));
@@ -44,7 +43,7 @@ static void	load_mlx(t_cub_data *data)
 {
 	data->mlx.mlx_ptr = mlx_init();
 	if (!data->mlx.mlx_ptr)
-		cub_exit(MLX_ERROR, data); // bad code
+		cub_exit(MLX_ERROR, data);
 	mlx_get_screen_size(data->mlx.mlx_ptr,
 		&data->mlx.width, &data->mlx.height);
 	data->mlx.win_ptr = mlx_new_window(data->mlx.mlx_ptr,
@@ -52,7 +51,7 @@ static void	load_mlx(t_cub_data *data)
 	if (!data->mlx.win_ptr)
 	{
 		free(data->mlx.mlx_ptr);
-		cub_exit(MLX_ERROR, data); // bad code
+		cub_exit(MLX_ERROR, data);
 	}
 	data->mlx.img = mlx_new_image(data->mlx.mlx_ptr, data->mlx.width,
 		data->mlx.height);

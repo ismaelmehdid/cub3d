@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 15:42:56 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/07 16:00:47 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void	check_map_validity(t_cub_data *cub_data);
 
 //=== Game ----------------------------------------------------------------===//
 
+void    game_algorithm(t_cub_data *data);
 void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
 int		key_hook(int keycode, t_cub_data **data);
