@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/08 18:40:47 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/08 19:07:54 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@
 # define FILE_EXTENTION ".cub"
 
 # define MINIMAP_SCALE 1
+# define PLAYER_DOT_SIZE 5
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800
+
+# define PLAYER_SPEED 15
 
 //=== Keys ----------------------------------------------------------------===//
 

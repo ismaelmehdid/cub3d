@@ -17,13 +17,13 @@ int	key_hook(int keycode, t_cub_data **data)
 	if (keycode == ESC)
 		cub_exit(SUCCESS, *data);
 	else if (keycode == W)
-		(*data)->player_data.y += 1;
+		(*data)->player_data.y += PLAYER_SPEED;
 	else if (keycode == S)
-		(*data)->player_data.y -= 1;
+		(*data)->player_data.y -= PLAYER_SPEED;
 	else if (keycode == A)
-		(*data)->player_data.x -= 1;
+		(*data)->player_data.x -= PLAYER_SPEED;
 	else if (keycode == D)
-		(*data)->player_data.x += 1;
+		(*data)->player_data.x += PLAYER_SPEED;
     /*if (keycode == W)
     if (keycode == A)
     if (keycode == S)

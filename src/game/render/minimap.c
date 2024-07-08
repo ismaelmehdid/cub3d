@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/08 18:41:50 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/08 19:04:44 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,34 @@ static void	draw_map_elements(t_cub_data *cub_data)
 	}
 }
 
+static void	draw_player_dot(t_cub_data *cub_data)
+{
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+	int	y;
+	int	x;
+
+	start_x = cub_data->player_data.x - PLAYER_DOT_SIZE / 2;
+	start_y = cub_data->player_data.y - PLAYER_DOT_SIZE / 2;
+	end_x = start_x + PLAYER_DOT_SIZE;
+	end_y = start_y + PLAYER_DOT_SIZE;
+	y = start_y;
+	while (y < end_y)
+	{
+		x = start_x;
+		while (x < end_x)
+		{
+			ft_mlx_pixel_put(cub_data, x, y, RED);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_minimap(t_cub_data *cub_data)
 {
 	draw_map_elements(cub_data);
-	ft_mlx_pixel_put(cub_data, cub_data->player_data.x, cub_data->player_data.y, RED); // draw player pos
+	draw_player_dot(cub_data);
 }
