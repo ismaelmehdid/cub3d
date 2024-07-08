@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/cub3D.h"
 
 void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color)
 {
     char    *dst;
 
+	if (!data)
+		return ;
     dst = data->mlx.addr + (y * data->mlx.line_len + x * (data->mlx.bits / 8));
+	if (dst < data->mlx.addr || dst >= data->mlx.addr + data->mlx.line_len * data->mlx.win_height)
+        return;
     *(unsigned int*)dst = color;
 }

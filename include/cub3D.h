@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 17:36:57 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/08 18:40:47 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@
 # define ARGUMENTS_REQUIRED 2
 # define FILE_EXTENTION ".cub"
 
-//=== Keys --------------------------------------------------------------===//
+# define MINIMAP_SCALE 1
+
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 800
+
+//=== Keys ----------------------------------------------------------------===//
 
 # define ESC 65307
 # define W 119
@@ -40,6 +45,12 @@
 # define D 100
 # define left_arrow 65361
 # define right_arrow 65363
+
+//=== Colors --------------------------------------------------------------===//
+
+# define WHITE 0xffffff
+# define GREY 0x808080
+# define RED 0xff0000
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -81,12 +92,21 @@ typedef struct s_color
 	unsigned char	b;
 }	t_color;
 
+typedef struct s_minimap_data
+{
+	int	cell_width;
+	int	cell_height;
+}	t_minimap_data;
+
 typedef struct s_cub_utils
 {
-	int		argc;
-	char	**argv;
-	char	*map_path; // from argv (don't free!)
-	int		settings_already_set;
+	int						argc;
+	char					**argv;
+	char					*map_path;
+	int						settings_already_set;
+	int						map_width;
+	int						map_height;
+	struct s_minimap_data	minimap_data;
 }	t_cub_utils;
 
 typedef struct s_cub_settings
@@ -106,8 +126,8 @@ typedef struct s_mlx
 	void	*win_ptr;
 	void	*img;
 	char	*addr;
-	int		height;
-	int		width;
+	int		win_height;
+	int		win_width;
 	int		bits;
 	int		line_len;
 	int		edian;
@@ -115,8 +135,8 @@ typedef struct s_mlx
 
 typedef struct s_player_data
 {
-	int				x;
-	int				y;
+	float			x;
+	float			y;
 	char			pole;
 }	t_player_data;
 
@@ -149,10 +169,14 @@ void	check_map_validity(t_cub_data *cub_data);
 
 //=== Game ----------------------------------------------------------------===//
 
-void    game_algorithm(t_cub_data *data);
+void	game_loop(t_cub_data *data);
 void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
 int		key_hook(int keycode, t_cub_data **data);
+void	draw_minimap(t_cub_data *data);
+void	draw_square_around_player(t_cub_data *cub_data, int x, int y);
+
+int		render(t_cub_data *cub_data);
 
 //=== Utils ---------------------------------------------------------------===//
 
@@ -164,6 +188,10 @@ bool	is_space(char check);
 int		double_array_len(char **array);
 void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
+void	load_mlx(t_cub_data *data); // <-- MLX DATA INIT
+
+int		map_player_pos_x(t_cub_data *cub_data, int x);
+int		map_player_pos_y(t_cub_data *cub_data, int y);
 
 //=== Exit messages -------------------------------------------------------===//
 

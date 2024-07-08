@@ -17,8 +17,12 @@ SRCS =  src/cub3D.c \
         src/parsing/store_settings/store_colors.c \
         src/parsing/store_settings/store_map.c \
         src/parsing/store_settings/store_textures.c \
-        src/game/background.c \
-        src/game/ft_pixel_put.c \
+        src/game/render/floor_and_ceiling.c \
+		src/game/render/minimap.c \
+		src/game/render/render.c \
+        src/game/utils/ft_pixel_put.c \
+		src/game/utils/load_mlx.c \
+		src/game/utils/mapping.c \
         src/game/key_controls.c \
         src/game/game_algorithm.c \
         include/get_next_line/get_next_line.c \

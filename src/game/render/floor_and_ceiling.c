@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../../../include/cub3D.h"
 
 static int  create_trgb(unsigned char r, unsigned char g, unsigned char b)
 {
@@ -34,21 +34,21 @@ static int  get_ceiling_color(t_cub_data *data)
 
 void	fill_background(t_cub_data *data, int x, int y)
 {
-    while (y < data->mlx.height / 2)
+    while (y < data->mlx.win_height / 2)
     {
 		x = 0;
-        while (x < data->mlx.width)
+        while (x < data->mlx.win_width)
         {
             ft_mlx_pixel_put(data, x, y, get_floor_color(data));
 			x++;
         }
 		y++;
     }
-	y = data->mlx.height / 2;
-    while (y < data->mlx.height)
+	y = data->mlx.win_height / 2;
+    while (y < data->mlx.win_height)
     {
 		x = 0;
-        while (x < data->mlx.width)
+        while (x < data->mlx.win_width)
         {
             ft_mlx_pixel_put(data, x, y, get_ceiling_color(data));
 			x++;

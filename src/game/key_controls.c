@@ -16,6 +16,14 @@ int	key_hook(int keycode, t_cub_data **data)
 {
 	if (keycode == ESC)
 		cub_exit(SUCCESS, *data);
+	else if (keycode == W)
+		(*data)->player_data.y += 1;
+	else if (keycode == S)
+		(*data)->player_data.y -= 1;
+	else if (keycode == A)
+		(*data)->player_data.x -= 1;
+	else if (keycode == D)
+		(*data)->player_data.x += 1;
     /*if (keycode == W)
     if (keycode == A)
     if (keycode == S)

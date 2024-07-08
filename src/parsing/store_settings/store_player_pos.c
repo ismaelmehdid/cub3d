@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 00:57:57 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 16:33:52 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/07 19:45:48 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ static void	check_if_player_pos(t_cub_data *cub_data, bool *set, int i, int j)
 	}
 }
 
+static void	get_map_height_and_width(t_cub_data *cub_data)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	cub_data->utils.map_width = 0;
+	while (cub_data->settings.map[j])
+	{
+		i = 0;
+		while (cub_data->settings.map[j][i])
+		{
+			i++;
+		}
+		if (cub_data->utils.map_width < i)
+			cub_data->utils.map_width = i;
+		j++;
+	}
+	cub_data->utils.map_height = j;
+}
+
 void	store_player_pos(t_cub_data *cub_data)
 {
 	int		i;
@@ -34,6 +56,7 @@ void	store_player_pos(t_cub_data *cub_data)
 	i = 0;
 	j = 0;
 	set = false;
+	get_map_height_and_width(cub_data);
 	while (cub_data->settings.map[j])
 	{
 		while (cub_data->settings.map[j][i])
