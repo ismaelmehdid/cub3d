@@ -57,7 +57,7 @@ $(NAME): $(OBJS) $(LIBFT_DIR) $(MLX_DIR)/libmlx.a
 $(OBJS_DIR)%.o: src/%.c
 	@mkdir -p $(dir $@)
 	@printf "\033[1;36mCompiling $<\033[0m\n"
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_DIR):
 	$(MAKE) -sC include/libft

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/08 19:07:54 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/09 21:56:41 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@
 # define ARGUMENTS_REQUIRED 2
 # define FILE_EXTENTION ".cub"
 
-# define MINIMAP_SCALE 1
-# define PLAYER_DOT_SIZE 5
-
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 800
-
-# define PLAYER_SPEED 15
-
 //=== Keys ----------------------------------------------------------------===//
 
 # define ESC 65307
@@ -54,6 +46,13 @@
 # define WHITE 0xffffff
 # define GREY 0x808080
 # define RED 0xff0000
+
+//=== Minimap -------------------------------------------------------------===//
+
+# define PLAYER_DOT_SIZE 4
+# define PLAYER_SPEED 3
+# define MINIMAP_SIZE 200
+# define RANGE 5
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -97,8 +96,8 @@ typedef struct s_color
 
 typedef struct s_minimap_data
 {
-	int	cell_width;
-	int	cell_height;
+	int		cell_width;
+	int		cell_height;
 }	t_minimap_data;
 
 typedef struct s_cub_utils
@@ -140,6 +139,7 @@ typedef struct s_player_data
 {
 	float			x;
 	float			y;
+	float			angle;
 	char			pole;
 }	t_player_data;
 
@@ -159,6 +159,15 @@ typedef struct s_map_params // Specific struct helping for map parsing
     t_cub_data	*cub_data;
 }               t_map_params;
 
+typedef struct s_bresenham
+{
+	int dx_dy[2];
+    int sx_sy[2];
+    int err;
+    int e2;
+}				t_bresenham;
+
+
 //=== Parsing -------------------------------------------------------------===//
 
 void	parsing(struct s_cub_data *cub_data);
@@ -177,9 +186,9 @@ void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
 int		key_hook(int keycode, t_cub_data **data);
 void	draw_minimap(t_cub_data *data);
-void	draw_square_around_player(t_cub_data *cub_data, int x, int y);
-
 int		render(t_cub_data *cub_data);
+float	degToRad(int a);
+void    bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
 
 //=== Utils ---------------------------------------------------------------===//
 
@@ -191,8 +200,7 @@ bool	is_space(char check);
 int		double_array_len(char **array);
 void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
-void	load_mlx(t_cub_data *data); // <-- MLX DATA INIT
-
+void	load_mlx(t_cub_data *data);
 int		map_player_pos_x(t_cub_data *cub_data, int x);
 int		map_player_pos_y(t_cub_data *cub_data, int y);
 

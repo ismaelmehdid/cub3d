@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/08 18:06:09 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/09 15:15:15 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	load_mlx(t_cub_data *data)
 	data->mlx.mlx_ptr = mlx_init();
 	if (!data->mlx.mlx_ptr)
 		cub_exit(MLX_ERROR, data);
-	data->mlx.win_width = WIN_WIDTH;
-	data->mlx.win_height = WIN_HEIGHT;
+	mlx_get_screen_size(data->mlx.mlx_ptr, &data->mlx.win_width,
+		&data->mlx.win_height);
 	data->mlx.win_ptr = mlx_new_window(data->mlx.mlx_ptr,
 		data->mlx.win_width, data->mlx.win_height, "cub3D");
 	if (!data->mlx.win_ptr)
