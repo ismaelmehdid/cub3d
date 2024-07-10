@@ -12,6 +12,11 @@
 
 #include "../../include/cub3D.h"
 
+float	degToRad(int a)
+{
+    return (a * M_PI / 180.0);
+}
+
 static void move_forward_back(int keycode, t_cub_data **data)
 {
     if (keycode == W)

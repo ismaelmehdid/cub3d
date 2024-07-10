@@ -12,15 +12,17 @@
 
 #include "../../include/cub3D.h"
 
-static void	map_initial_player_pos(t_cub_data *data)
+static void	scaling_player_pos(t_cub_data *data)
 {
-	data->player_data.x = map_player_pos_x(data, data->player_data.x);
-	data->player_data.y = map_player_pos_y(data, data->player_data.y);
+	data->player_data.x *= MINIMAP_SIZE / (RANGE * 2);
+	data->player_data.x += (RANGE * 2);
+	data->player_data.y *= MINIMAP_SIZE / (RANGE * 2);
+	data->player_data.y += (RANGE * 2);
 }
 
 static void	game_algorithm(t_cub_data *data)
 {    
-	map_initial_player_pos(data);
+	scaling_player_pos(data);
 	fill_background(data, 0, 0);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, 

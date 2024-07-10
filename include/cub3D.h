@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/09 21:56:41 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:41:28 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,8 +201,6 @@ int		double_array_len(char **array);
 void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
 void	load_mlx(t_cub_data *data);
-int		map_player_pos_x(t_cub_data *cub_data, int x);
-int		map_player_pos_y(t_cub_data *cub_data, int y);
 
 //=== Exit messages -------------------------------------------------------===//
 
