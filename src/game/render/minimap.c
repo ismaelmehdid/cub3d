@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/10 15:33:42 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:38:48 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static void draw_elem(t_cub_data *data, int i[2], int color,
 	int end_x;
 	int end_y;
 
-	x = (i[1] - offset_x_y[0]) * data->utils.minimap_data.cell_width;
-	y = (i[0] - offset_x_y[1]) * data->utils.minimap_data.cell_height;
-	end_x = x + data->utils.minimap_data.cell_width;
-	end_y = y + data->utils.minimap_data.cell_height;
+	x = (i[1] - offset_x_y[0]) * data->utils.minimap.cell_width;
+	y = (i[0] - offset_x_y[1]) * data->utils.minimap.cell_height;
+	end_x = x + data->utils.minimap.cell_width;
+	end_y = y + data->utils.minimap.cell_height;
 
 	while (y < end_y)
 	{
-		x = (i[1] - offset_x_y[0]) * data->utils.minimap_data.cell_width;
+		x = (i[1] - offset_x_y[0]) * data->utils.minimap.cell_width;
 		while (x < end_x)
 		{
 			if (x >= 0 && y >= 0)
@@ -40,12 +40,10 @@ static void draw_elem(t_cub_data *data, int i[2], int color,
 
 static void draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 {
-    dat->utils.minimap_data.cell_width = MINIMAP_SIZE / (2 * RANGE);
-    dat->utils.minimap_data.cell_height = MINIMAP_SIZE / (2 * RANGE);
-    offset_x_y[0] = (dat->player_data.x / \
-        dat->utils.minimap_data.cell_width) - RANGE;
-    offset_x_y[1] = (dat->player_data.y / \
-        dat->utils.minimap_data.cell_height) - RANGE;
+    dat->utils.minimap.cell_width = MINIMAP_SIZE / (2 * RANGE);
+    dat->utils.minimap.cell_height = MINIMAP_SIZE / (2 * RANGE);
+    offset_x_y[0] = dat->player_data.x / dat->utils.minimap.cell_width - RANGE;
+    offset_x_y[1] = dat->player_data.y / dat->utils.minimap.cell_height - RANGE;
     i[0] = (int)offset_x_y[1];
     while (i[0] < (int)offset_x_y[1] + 2 * RANGE)
     {

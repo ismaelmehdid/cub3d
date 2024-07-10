@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/10 15:41:28 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:35:33 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_color
 	unsigned char	b;
 }	t_color;
 
-typedef struct s_minimap_data
+typedef struct s_minimap
 {
 	int		cell_width;
 	int		cell_height;
@@ -108,7 +108,7 @@ typedef struct s_cub_utils
 	int						settings_already_set;
 	int						map_width;
 	int						map_height;
-	struct s_minimap_data	minimap_data;
+	struct s_minimap		minimap;
 }	t_cub_utils;
 
 typedef struct s_cub_settings
