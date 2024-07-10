@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/09 21:44:45 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/10 15:33:42 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,30 @@
 static void draw_elem(t_cub_data *data, int i[2], int color,
                                                 float offset_x_y[2])
 {
-    int x;
-    int y;
-    int end_x;
-    int end_y;
+	int x;
+	int y;
+	int end_x;
+	int end_y;
 
-    x = (i[1] - offset_x_y[0]) * data->utils.minimap_data.cell_width;
-    y = (i[0] - offset_x_y[1]) * data->utils.minimap_data.cell_height;
-    end_x = x + data->utils.minimap_data.cell_width;
-    end_y = y + data->utils.minimap_data.cell_height;
+	x = (i[1] - offset_x_y[0]) * data->utils.minimap_data.cell_width;
+	y = (i[0] - offset_x_y[1]) * data->utils.minimap_data.cell_height;
+	end_x = x + data->utils.minimap_data.cell_width;
+	end_y = y + data->utils.minimap_data.cell_height;
 
-    while (y < end_y)
-    {
-        x = (i[1] - offset_x_y[0]) * data->utils.minimap_data.cell_width;
-        while (x < end_x)
-        {
-            if (x >= 0 && y >= 0)
-                ft_mlx_pixel_put(data, x, y, color);
-            x++;
-        }
-        y++;
-    }
+	while (y < end_y)
+	{
+		x = (i[1] - offset_x_y[0]) * data->utils.minimap_data.cell_width;
+		while (x < end_x)
+		{
+			if (x >= 0 && y >= 0)
+				ft_mlx_pixel_put(data, x, y, color);
+			x++;
+		}
+	    y++;
+	}
 }
 
-static void draw_map_elements(t_cub_data *dat, int i[2], 
-                                float offset_x_y[2])
+static void draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 {
     dat->utils.minimap_data.cell_width = MINIMAP_SIZE / (2 * RANGE);
     dat->utils.minimap_data.cell_height = MINIMAP_SIZE / (2 * RANGE);
@@ -54,7 +53,7 @@ static void draw_map_elements(t_cub_data *dat, int i[2],
         while (i[1] < (int)offset_x_y[0] + 2 * RANGE)
         {
             if (i[0] >= 0 && i[0] < dat->utils.map_height && \
-                i[1] >= 0 && i[1] < dat->utils.map_width)
+                i[1] >= 0 && i[1] < ft_strlen(dat->settings.map[i[0]]))
             {
                 if (dat->settings.map[i[0]][i[1]] == '1')
                     draw_elem(dat, i, WHITE, offset_x_y);
@@ -111,13 +110,13 @@ static void draw_player_on_minimap(t_cub_data *data, int x, int y)
 
 void draw_minimap(t_cub_data *data)
 {
-    int i[2];
-    float   offset_x_y[2];
-    
-    i[0] = 0;
-    i[1] = 0;
-    offset_x_y[0] = 0;
-    offset_x_y[1] = 0;
-    draw_map_elements(data, i, offset_x_y);
-    draw_player_on_minimap(data, 0, 0);
+	int		i[2];
+	float	offset_x_y[2];
+
+	i[0] = 0;
+	i[1] = 0;
+	offset_x_y[0] = 0;
+	offset_x_y[1] = 0;
+	draw_map_elements(data, i, offset_x_y);
+	draw_player_on_minimap(data, 0, 0);
 }
