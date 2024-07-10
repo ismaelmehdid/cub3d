@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/10 15:33:42 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/10 16:40:24 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static void draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
             {
                 if (dat->settings.map[i[0]][i[1]] == '1')
                     draw_elem(dat, i, WHITE, offset_x_y);
-                else
+                else if (dat->settings.map[i[0]][i[1]] == '0' || \
+                    dat->settings.map[i[0]][i[1]] == dat->player_data.pole)
                     draw_elem(dat, i, GREY, offset_x_y);
             }
             i[1]++;

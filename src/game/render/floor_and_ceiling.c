@@ -12,6 +12,21 @@
 
 #include "../../../include/cub3D.h"
 
+static void minimap_frame(t_cub_data *data)
+{
+    int x0_y0[2];
+    int x1_y1[2];
+
+    x0_y0[0] = 0;
+    x0_y0[1] = 220;
+    x1_y1[0] = 220;
+    x1_y1[1] = 220;
+    bresenham_line_draw(data, x0_y0, x1_y1);
+    x0_y0[0] = 220;
+    x0_y0[1] = 0;
+    bresenham_line_draw(data, x0_y0, x1_y1);
+}
+
 static int  create_trgb(unsigned char r, unsigned char g, unsigned char b)
 {
     int t;
@@ -55,4 +70,5 @@ void	fill_background(t_cub_data *data, int x, int y)
         }
 		y++;
     }
+    minimap_frame(data);
 }
