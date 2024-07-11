@@ -19,6 +19,7 @@ SRCS =  src/cub3D.c \
         src/parsing/store_settings/store_textures.c \
         src/game/render/floor_and_ceiling.c \
 		src/game/render/minimap.c \
+		src/game/render/raycasting.c \
 		src/game/render/render.c \
         src/game/utils/ft_pixel_put.c \
 		src/game/utils/load_mlx.c \
@@ -30,7 +31,7 @@ SRCS =  src/cub3D.c \
 OBJS_DIR = ./objs/
 OBJS = $(patsubst src/%.c,$(OBJS_DIR)%.o,$(SRCS))
 
-CC = cc
+CC = cc -g
 
 LIBFT_DIR = include/libft/libft.a
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/10 16:45:24 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/11 16:52:16 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 {
     dat->utils.minimap.cell_width = MINIMAP_SIZE / (2 * RANGE);
     dat->utils.minimap.cell_height = MINIMAP_SIZE / (2 * RANGE);
-    offset_x_y[0] = dat->player_data.x / dat->utils.minimap.cell_width - RANGE;
-    offset_x_y[1] = dat->player_data.y / dat->utils.minimap.cell_height - RANGE;
+    offset_x_y[0] = dat->player_data.mm_x / dat->utils.minimap.cell_width - RANGE;
+    offset_x_y[1] = dat->player_data.mm_y / dat->utils.minimap.cell_height - RANGE;
     i[0] = (int)offset_x_y[1];
     while (i[0] < (int)offset_x_y[1] + 2 * RANGE)
     {
@@ -63,22 +63,6 @@ static void draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
         }
         i[0]++;
     }
-}
-
-static void draw_view_direction(t_cub_data *data)
-{
-    int     start_x_y[2];
-    int     end_x_y[2];
-    int     line_length;
-    float   angle_rad;
-
-    line_length = 15;
-    angle_rad = degToRad(data->player_data.angle);
-    start_x_y[0] = MINIMAP_SIZE / 2;
-    start_x_y[1] = MINIMAP_SIZE / 2;
-    end_x_y[0] = start_x_y[0] + line_length * cos(angle_rad);
-    end_x_y[1] = start_x_y[1] - line_length * sin(angle_rad);
-    bresenham_line_draw(data, start_x_y, end_x_y);
 }
 
 static void draw_player_on_minimap(t_cub_data *data, int x, int y)
@@ -104,7 +88,13 @@ static void draw_player_on_minimap(t_cub_data *data, int x, int y)
         }
         y++;
     }
-    draw_view_direction(data);
+}
+
+int	scale_player_pos(float pos)
+{
+	pos *= MINIMAP_SIZE / (RANGE * 2);
+	pos += (RANGE * 2);
+	return (pos);
 }
 
 void draw_minimap(t_cub_data *data)
@@ -116,6 +106,8 @@ void draw_minimap(t_cub_data *data)
 	i[1] = 0;
 	offset_x_y[0] = 0;
 	offset_x_y[1] = 0;
+	data->player_data.mm_x = scale_player_pos(data->player_data.x);
+	data->player_data.mm_y = scale_player_pos(data->player_data.y);
 	draw_map_elements(data, i, offset_x_y);
-	draw_player_on_minimap(data, 0, 0);
+	draw_player_on_minimap(data, data->player_data.mm_x, data->player_data.mm_y);
 }

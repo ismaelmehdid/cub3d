@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/10 15:35:33 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/11 20:09:24 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,13 @@
 //=== Minimap -------------------------------------------------------------===//
 
 # define PLAYER_DOT_SIZE 4
-# define PLAYER_SPEED 3
+# define PLAYER_SPEED 0.5
 # define MINIMAP_SIZE 200
 # define RANGE 5
+
+//=== Ray Casting ---------------------------------------------------------===//
+
+# define FOV 90.0
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -139,6 +143,8 @@ typedef struct s_player_data
 {
 	float			x;
 	float			y;
+	float			mm_x;
+	float			mm_y;
 	float			angle;
 	char			pole;
 }	t_player_data;
@@ -158,6 +164,26 @@ typedef struct s_map_params // Specific struct helping for map parsing
 	int			fd;
     t_cub_data	*cub_data;
 }               t_map_params;
+
+typedef struct s_ray_cast
+{
+	int		column; // the pixel column we are casting the ray on	
+	float	ray_angle;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int		side; // which side of the wall has been hit 0 = vertical line, 1 = horizontal line (usefull for shadow)
+	float	perp_wall_dist;
+	int		line_draw_start;
+	int		line_draw_end;
+}	t_ray_cast;
 
 typedef struct s_bresenham
 {
@@ -187,6 +213,7 @@ void	fill_background(t_cub_data *data, int x, int y);
 int		key_hook(int keycode, t_cub_data **data);
 void	draw_minimap(t_cub_data *data);
 int		render(t_cub_data *cub_data);
+void	raycasting(t_cub_data *data);
 float	degToRad(int a);
 void    bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
 

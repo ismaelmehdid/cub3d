@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_player_pos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 00:57:57 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/09 21:56:37 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/11 20:19:03 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	check_if_player_pos(t_cub_data *cub_data, bool *set, int i, int j)
 			cub_exit(MAP_DUPLICATED_PLAYER_SPAWN_POS, cub_data);
 		cub_data->player_data.pole = cub_data->settings.map[j][i];
 		if (cub_data->player_data.pole == 'N')
-			cub_data->player_data.angle = 0.0f;
-		else if (cub_data->player_data.pole == 'E')
-			cub_data->player_data.angle = 90.0f;
-		else if (cub_data->player_data.pole == 'S')
-			cub_data->player_data.angle = 180.0f;
-		else if (cub_data->player_data.pole == 'W')
 			cub_data->player_data.angle = 270.0f;
+		else if (cub_data->player_data.pole == 'E')
+			cub_data->player_data.angle = 0.0f;
+		else if (cub_data->player_data.pole == 'S')
+			cub_data->player_data.angle = 90.0f;
+		else if (cub_data->player_data.pole == 'W')
+			cub_data->player_data.angle = 180.0f;
 		cub_data->player_data.x = i;
 		cub_data->player_data.y = j;
 		*set = true;
