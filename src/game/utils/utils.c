@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:06:50 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 22:12:08 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/12 22:18:06 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,9 @@ long	get_current_time_in_ms()
 
     gettimeofday(&tv, NULL);
     return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+float	degToRad(int a)
+{
+    return (a * M_PI / 180.0);
 }
