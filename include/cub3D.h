@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/11 20:09:24 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:07:49 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ int		double_array_len(char **array);
 void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
 void	load_mlx(t_cub_data *data);
+int		scale_player_pos(float pos);
 
 //=== Exit messages -------------------------------------------------------===//
 
