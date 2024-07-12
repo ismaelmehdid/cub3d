@@ -21,9 +21,10 @@ SRCS =  src/cub3D.c \
 		src/game/render/minimap.c \
 		src/game/render/raycasting.c \
 		src/game/render/render.c \
+        src/game/render/weapon_logic.c \
         src/game/utils/ft_pixel_put.c \
 		src/game/utils/load_mlx.c \
-		src/game/utils/scaling.c \
+		src/game/utils/utils.c \
         src/game/key_controls.c \
         src/game/game_algorithm.c \
         include/get_next_line/get_next_line.c \

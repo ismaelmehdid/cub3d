@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/10 15:22:05 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 17:03:59 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 
 	cub_data.utils.argc = argc;
 	cub_data.utils.argv = argv;
+	set_null_to_ptrs(&cub_data); // without this there will be a conditional jump
 	parsing(&cub_data);
 	debug_print_settings(&cub_data);
 	load_mlx(&cub_data);

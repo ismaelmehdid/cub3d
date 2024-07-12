@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 15:54:47 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:36:40 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,20 @@ static void	free_map(t_cub_data *cub_data)
 
 static void	destroy_mlx(t_cub_data *cub_data)
 {
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.shoot1.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.shoot1.img_ptr);
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.shoot2.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.shoot2.img_ptr);
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.shoot3.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.shoot3.img_ptr);
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.std.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.std.img_ptr);
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.std2.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.std2.img_ptr);
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.std3.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.std3.img_ptr);
+	if (cub_data->mlx.mlx_ptr && cub_data->gun.std4.img_ptr)
+		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->gun.std4.img_ptr);
 	if (cub_data->mlx.mlx_ptr && cub_data->mlx.img)
 		mlx_destroy_image(cub_data->mlx.mlx_ptr, cub_data->mlx.img);
 	if (cub_data->mlx.mlx_ptr && cub_data->mlx.win_ptr)

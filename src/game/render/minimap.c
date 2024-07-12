@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 16:06:38 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 22:05:50 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ void draw_minimap(t_cub_data *data)
 	draw_map_elements(data, i, offset_x_y);
 	draw_player_on_minimap(data, data->player_data.mm_x, data->player_data.mm_y);
 	draw_view_direction(data);
+    minimap_frame(data);
 }

@@ -33,7 +33,6 @@ static void move_forward_back(int keycode, t_cub_data **data)
         (*data)->player_data.x -= PLAYER_SPEED * \
             cos(degToRad((*data)->player_data.angle));
     }
-	render(*data);
 }
 
 static void move_left_right(int keycode, t_cub_data **data)
@@ -52,7 +51,6 @@ static void move_left_right(int keycode, t_cub_data **data)
         (*data)->player_data.x -= PLAYER_SPEED * \
             sin(degToRad((*data)->player_data.angle));
     }
-	render(*data);
 }
 
 
@@ -70,7 +68,6 @@ static void    turn_left_right(int keycode, t_cub_data **data)
         if ((*data)->player_data.angle < 0)
             (*data)->player_data.angle -= 360;
     }
-	render(*data);
 }
 
 int key_hook(int keycode, t_cub_data **data)

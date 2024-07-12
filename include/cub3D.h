@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 16:07:49 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 22:06:58 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <math.h>
+# include <sys/time.h>
 
 //=== Macros --------------------------------------------------------------===//
 
@@ -91,6 +92,33 @@ typedef enum s_errors
 	OTHER
 }	t_errors;
 
+typedef struct  s_img
+{
+    void    *img_ptr;
+    char    *data;
+    int     bpp;
+    int     size_line;
+    int     endian;
+    int     width;
+    int     height;
+}               t_img;
+
+typedef struct s_gun
+{
+	t_img	std;
+	t_img	std2;
+	t_img	std3;
+	t_img	std4;
+	t_img	shoot1;
+	t_img	shoot2;
+	t_img	shoot3;
+	t_img   *shoot_images[5];
+	t_img	*gun_images[2];
+	bool	is_shooting;
+	int		shoot_frame;
+	long	last_shoot_time;
+}	t_gun;
+
 typedef struct s_color
 {
 	unsigned char	r;
@@ -155,6 +183,7 @@ typedef struct s_cub_data
 	struct s_cub_utils		utils;
 	struct s_mlx			mlx;
 	struct s_player_data	player_data;
+	struct s_gun			gun;
 }	t_cub_data;
 
 typedef struct s_map_params // Specific struct helping for map parsing
@@ -210,12 +239,11 @@ void	check_map_validity(t_cub_data *cub_data);
 void	game_loop(t_cub_data *data);
 void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
-int		key_hook(int keycode, t_cub_data **data);
 void	draw_minimap(t_cub_data *data);
 int		render(t_cub_data *cub_data);
 void	raycasting(t_cub_data *data);
-float	degToRad(int a);
-void    bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
+void	weapon_logic(t_cub_data *data, int gun_frame);
+void	minimap_frame(t_cub_data *data);
 
 //=== Utils ---------------------------------------------------------------===//
 
@@ -228,7 +256,13 @@ int		double_array_len(char **array);
 void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
 void	load_mlx(t_cub_data *data);
+void	set_null_to_ptrs(t_cub_data *data);
 int		scale_player_pos(float pos);
+void    bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
+long	get_current_time_in_ms();
+float	degToRad(int a);
+int		key_hook(int keycode, t_cub_data **data);
+int		mouse_hook(int button, int x, int y, t_cub_data *data);
 
 //=== Exit messages -------------------------------------------------------===//
 
