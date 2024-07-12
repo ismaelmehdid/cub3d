@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:27:15 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/11 17:55:13 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 18:47:01 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	render(t_cub_data *data)
 {
+	printf("Player angle in rad: %f", data->player_data.angle);
 	fill_background(data, 0, 0);
 	draw_minimap(data);
 	raycasting(data);

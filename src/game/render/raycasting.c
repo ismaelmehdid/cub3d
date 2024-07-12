@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 01:00:04 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 18:41:41 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ static void	dda_algorithm(t_cub_data *data, t_ray_cast *ray)
 	hit = false;
 	while (hit == false)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
+        if (ray->side_dist_x < ray->side_dist_y)
+        {
+            ray->side_dist_x += ray->delta_dist_x;
+            ray->map_x += ray->step_x;
+            ray->side = 0;
+        }
+        else
+        {
+            ray->side_dist_y += ray->delta_dist_y;
+            ray->map_y += ray->step_y;
+            ray->side = 1;
+        }
 		if (data->settings.map[ray->map_x][ray->map_y] == '1')
 			hit = true;
 	}
@@ -49,33 +49,31 @@ static void	dda_algorithm(t_cub_data *data, t_ray_cast *ray)
 
 static void	compute_raycasting_values(t_cub_data *data, t_ray_cast *ray)
 {
-		ray->ray_angle = data->player_data.angle - (FOV / 2) + ((float)ray->column / data->mlx.win_width) * FOV; // get the angle of the ray for this pixel column
-		ray->ray_dir_x = cos(ray->ray_angle * M_PI / 180); // convert angle to radian and get the x and y directions of the ray
-		ray->ray_dir_y = sin(ray->ray_angle * M_PI / 180);
-		ray->map_x = (int)data->player_data.x; // initial position
-		ray->map_y = (int)data->player_data.y; // initial position
-		ray->delta_dist_x = ft_fabs(1 / ray->ray_dir_x); // get how many x we go forward for one y traveled
-		ray->delta_dist_y = ft_fabs(1 / ray->ray_dir_y); // get how many y we go up for one x traveled
-		if (ray->ray_dir_x < 0)
-		{
-			ray->step_x = -1;
-			ray->side_dist_x = (data->player_data.x - ray->map_x) * ray->delta_dist_x;
-		}
-		else
-		{
-			ray->step_x = 1;
-			ray->side_dist_x = (ray->map_x + 1 - data->player_data.x) * ray->delta_dist_x;	
-		}
-		if (ray->ray_dir_y < 0)
-		{
-			ray->step_y = -1;
-			ray->side_dist_y = (data->player_data.y - ray->map_y) * ray->delta_dist_y;
-		}
-		else
-		{
-			ray->step_y = 1;
-			ray->side_dist_y = (ray->map_y + 1 - data->player_data.y) * ray->delta_dist_y;	
-		}
+	float fovRadian = FOV * (M_PI / 180);
+	ray->ray_angle = data->player_data.angle - (fovRadian / 2) + ((float)ray->column / data->mlx.win_width) * fovRadian;	ray->ray_dir_x = cos(ray->ray_angle); // convert angle to radian and get the x and y directions of the ray
+	ray->ray_dir_y = sin(ray->ray_angle);
+	ray->delta_dist_x = ft_fabs(1 / ray->ray_dir_x); // get how many x we go forward for one y traveled
+	ray->delta_dist_y = ft_fabs(1 / ray->ray_dir_y); // get how many y we go up for one x traveled
+	if (ray->ray_dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist_x = (data->player_data.x - ray->map_x) * ray->delta_dist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1 - data->player_data.x) * ray->delta_dist_x;	
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (data->player_data.y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1 - data->player_data.y) * ray->delta_dist_y;	
+	}
 }
 
 static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
@@ -105,6 +103,8 @@ void	raycasting(t_cub_data *data)
 	y = 0;
 	while (ray.column < data->mlx.win_width)
 	{
+		ray.map_x = (int)data->player_data.x; // initial position
+		ray.map_y = (int)data->player_data.y; // initial position
 		compute_raycasting_values(data, &ray);
 		dda_algorithm(data, &ray);
 		get_wall_dist(data, &ray);

@@ -21,36 +21,32 @@ static void move_forward_back(int keycode, t_cub_data **data)
 {
     if (keycode == W)
     {
-        (*data)->player_data.y -= PLAYER_SPEED * \
-            sin(degToRad((*data)->player_data.angle));
-        (*data)->player_data.x += PLAYER_SPEED * \
-            cos(degToRad((*data)->player_data.angle));
+        (*data)->player_data.x += PLAYER_SPEED * sin((*data)->player_data.angle);
+        (*data)->player_data.y -= PLAYER_SPEED * cos((*data)->player_data.angle);
     }
     else if (keycode == S)
     {
-        (*data)->player_data.y += PLAYER_SPEED * \
-            sin(degToRad((*data)->player_data.angle));
-        (*data)->player_data.x -= PLAYER_SPEED * \
-            cos(degToRad((*data)->player_data.angle));
+        (*data)->player_data.x -= PLAYER_SPEED * sin((*data)->player_data.angle);
+        (*data)->player_data.y += PLAYER_SPEED * cos((*data)->player_data.angle);
     }
 	render(*data);
 }
 
 static void move_left_right(int keycode, t_cub_data **data)
 {
+	float	strafe_speed;
+
+	strafe_speed = 0.05;
     if (keycode == A)
     {
-        (*data)->player_data.y += PLAYER_SPEED * \
-            cos(degToRad((*data)->player_data.angle));
-        (*data)->player_data.x += PLAYER_SPEED * \
-            sin(degToRad((*data)->player_data.angle));
+        (*data)->player_data.x -= strafe_speed * cos((*data)->player_data.angle);
+        (*data)->player_data.y -= strafe_speed * sin((*data)->player_data.angle);
+
     }
     else if (keycode == D)
     {
-        (*data)->player_data.y -= PLAYER_SPEED * \
-            cos(degToRad((*data)->player_data.angle));
-        (*data)->player_data.x -= PLAYER_SPEED * \
-            sin(degToRad((*data)->player_data.angle));
+        (*data)->player_data.x += strafe_speed * cos((*data)->player_data.angle);
+        (*data)->player_data.y += strafe_speed * sin((*data)->player_data.angle);
     }
 	render(*data);
 }
@@ -58,17 +54,18 @@ static void move_left_right(int keycode, t_cub_data **data)
 
 static void    turn_left_right(int keycode, t_cub_data **data)
 {
+    float radian_step = 5 * M_PI / 180; // convert 5 degrees to radians
     if (keycode == left_arrow)
     {
-        (*data)->player_data.angle -= 5;
-        if ((*data)->player_data.angle > 360)
-            (*data)->player_data.angle += 360;
+        (*data)->player_data.angle -= radian_step;
+        if ((*data)->player_data.angle < 0)
+            (*data)->player_data.angle += 2 * M_PI;
     }
     else if (keycode == right_arrow)
     {
-        (*data)->player_data.angle += 5;
-        if ((*data)->player_data.angle < 0)
-            (*data)->player_data.angle -= 360;
+        (*data)->player_data.angle += radian_step;
+        if ((*data)->player_data.angle >= 2 * M_PI)
+            (*data)->player_data.angle -= 2 * M_PI;
     }
 	render(*data);
 }

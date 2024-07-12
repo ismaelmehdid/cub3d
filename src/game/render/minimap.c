@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 16:06:38 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/12 17:52:43 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,12 @@ static void draw_view_direction(t_cub_data *data)
     int     start_x_y[2];
     int     end_x_y[2];
     int     line_length;
-    float   angle_rad;
 
     line_length = 15;
-    angle_rad = degToRad(data->player_data.angle);
     start_x_y[0] = MINIMAP_SIZE / 2;
     start_x_y[1] = MINIMAP_SIZE / 2;
-    end_x_y[0] = start_x_y[0] + line_length * cos(angle_rad);
-    end_x_y[1] = start_x_y[1] - line_length * sin(angle_rad);
+    end_x_y[0] = start_x_y[0] + line_length * cos(data->player_data.angle);
+    end_x_y[1] = start_x_y[1] - line_length * sin(data->player_data.angle);
     bresenham_line_draw(data, start_x_y, end_x_y);
 }
 
