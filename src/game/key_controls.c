@@ -12,11 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-float	degToRad(int a)
-{
-    return (a * M_PI / 180.0);
-}
-
 static void move_forward_back(int keycode, t_cub_data **data)
 {
     if (keycode == W)
@@ -29,7 +24,6 @@ static void move_forward_back(int keycode, t_cub_data **data)
         (*data)->player_data.x -= PLAYER_SPEED * sin((*data)->player_data.angle);
         (*data)->player_data.y += PLAYER_SPEED * cos((*data)->player_data.angle);
     }
-	render(*data);
 }
 
 static void move_left_right(int keycode, t_cub_data **data)
@@ -48,7 +42,6 @@ static void move_left_right(int keycode, t_cub_data **data)
         (*data)->player_data.x += strafe_speed * cos((*data)->player_data.angle);
         (*data)->player_data.y += strafe_speed * sin((*data)->player_data.angle);
     }
-	render(*data);
 }
 
 
@@ -67,7 +60,6 @@ static void    turn_left_right(int keycode, t_cub_data **data)
         if ((*data)->player_data.angle >= 2 * M_PI)
             (*data)->player_data.angle -= 2 * M_PI;
     }
-	render(*data);
 }
 
 int key_hook(int keycode, t_cub_data **data)
