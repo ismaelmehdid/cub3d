@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 00:57:57 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 18:24:30 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:21:11 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	check_if_player_pos(t_cub_data *cub_data, bool *set, int i, int j)
 			cub_exit(MAP_DUPLICATED_PLAYER_SPAWN_POS, cub_data);
 		cub_data->player_data.pole = cub_data->settings.map[j][i];
 		if (cub_data->player_data.pole == 'N')
-			cub_data->player_data.angle = 0.0f;
-		else if (cub_data->player_data.pole == 'E')
-			cub_data->player_data.angle = M_PI / 2;
-		else if (cub_data->player_data.pole == 'S')
-			cub_data->player_data.angle = M_PI;
-		else if (cub_data->player_data.pole == 'W')
 			cub_data->player_data.angle = 3 * M_PI / 2;
+		else if (cub_data->player_data.pole == 'E')
+			cub_data->player_data.angle = 0.0f;
+		else if (cub_data->player_data.pole == 'S')
+			cub_data->player_data.angle = M_PI / 2;
+		else if (cub_data->player_data.pole == 'W')
+			cub_data->player_data.angle = M_PI;
 		cub_data->player_data.x = i;
 		cub_data->player_data.y = j;
 		*set = true;
@@ -37,7 +37,7 @@ static void	get_map_height_and_width(t_cub_data *cub_data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	cub_data->utils.map_width = 0;

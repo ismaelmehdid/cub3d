@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:31:28 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 17:34:08 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:19:21 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static bool	check_neighbours(char **map, int i, int j, int map_height)
 		{
 			ni = i + x;
 			nj = j + y;
-			if (nj < 0 || nj >= map_height || ni < 0 || ni >= ft_strlen(map[nj]) || !map[nj][ni] || map[nj][ni] == ' ')
+			if (nj < 0 || nj >= map_height || ni < 0
+				|| ni >= ft_strlen(map[nj]) || !map[nj][ni]
+				|| map[nj][ni] == ' ')
 				return (false);
 			x++;
 		}

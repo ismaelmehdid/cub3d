@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 17:51:37 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:20:51 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static void	texture_file_opening_test(
 	close(fd);
 }
 
-static void	store_texture_path_ptr(t_cub_data *cub_data, char direction, char *path)
+static void	store_texture_path_ptr(
+	t_cub_data *cub_data,
+	char direction,
+	char *path)
 {
 	if (direction == 'E')
 		cub_data->settings.e_texture_path = path;
@@ -49,7 +52,11 @@ static void	store_texture_path_ptr(t_cub_data *cub_data, char direction, char *p
 		cub_data->settings.w_texture_path = path;
 }
 
-static void	check_for_duplicate_settings(t_cub_data *cub_data, char direction, char **line_elements, int fd)
+static void	check_for_duplicate_settings(
+	t_cub_data *cub_data,
+	char direction,
+	char **line_elements,
+	int fd)
 {
 	if ((direction == 'E' && cub_data->settings.e_texture_path != NULL)
 		|| (direction == 'N' && cub_data->settings.n_texture_path != NULL)

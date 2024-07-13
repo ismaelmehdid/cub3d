@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/12 17:41:32 by imehdid          ###   ########.fr       */
-=======
-/*   Updated: 2024/07/12 22:06:58 by asyvash          ###   ########.fr       */
->>>>>>> 3773851423fb82bfc5f7a63610f9d235cd5db476
+/*   Updated: 2024/07/13 17:12:58 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +39,8 @@
 # define A 97
 # define S 115
 # define D 100
-# define left_arrow 65361
-# define right_arrow 65363
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
 
 //=== Colors --------------------------------------------------------------===//
 
@@ -55,13 +51,15 @@
 //=== Minimap -------------------------------------------------------------===//
 
 # define PLAYER_DOT_SIZE 4
-# define PLAYER_SPEED 0.5
 # define MINIMAP_SIZE 200
 # define RANGE 5
 
-//=== Ray Casting ---------------------------------------------------------===//
+//=== Player Settings -----------------------------------------------------===//
 
 # define FOV 60.0f
+# define SENSITIVITY 5
+# define STRAFE_SPEED 0.5f
+# define PLAYER_SPEED 0.5f
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -96,16 +94,16 @@ typedef enum s_errors
 	OTHER
 }	t_errors;
 
-typedef struct  s_img
+typedef struct s_img
 {
-    void    *img_ptr;
-    char    *data;
-    int     bpp;
-    int     size_line;
-    int     endian;
-    int     width;
-    int     height;
-}               t_img;
+	void	*img_ptr;
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
 
 typedef struct s_gun
 {
@@ -116,7 +114,7 @@ typedef struct s_gun
 	t_img	shoot1;
 	t_img	shoot2;
 	t_img	shoot3;
-	t_img   *shoot_images[5];
+	t_img	*shoot_images[5];
 	t_img	*gun_images[2];
 	bool	is_shooting;
 	int		shoot_frame;
@@ -195,8 +193,8 @@ typedef struct s_map_params // Specific struct helping for map parsing
 	char		**old_map;
 	char		*line;
 	int			fd;
-    t_cub_data	*cub_data;
-}               t_map_params;
+	t_cub_data	*cub_data;
+}	t_map_params;
 
 typedef struct s_ray_cast
 {
@@ -220,12 +218,11 @@ typedef struct s_ray_cast
 
 typedef struct s_bresenham
 {
-	int dx_dy[2];
-    int sx_sy[2];
-    int err;
-    int e2;
-}				t_bresenham;
-
+	int	dx_dy[2];
+	int	sx_sy[2];
+	int	err;
+	int	e2;
+}	t_bresenham;
 
 //=== Parsing -------------------------------------------------------------===//
 
@@ -241,7 +238,7 @@ void	check_map_validity(t_cub_data *cub_data);
 //=== Game ----------------------------------------------------------------===//
 
 void	game_loop(t_cub_data *data);
-void    ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
+void	ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
 void	draw_minimap(t_cub_data *data);
 int		render(t_cub_data *cub_data);
@@ -262,31 +259,32 @@ bool	is_player_spawn_pos(char c);
 void	load_mlx(t_cub_data *data);
 void	set_null_to_ptrs(t_cub_data *data);
 int		scale_player_pos(float pos);
-void    bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
-long	get_current_time_in_ms();
-float	degToRad(int a);
+void	bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
+long	get_current_time_in_ms(void);
+float	deg_to_rad(int a);
 int		key_hook(int keycode, t_cub_data **data);
 int		mouse_hook(int button, int x, int y, t_cub_data *data);
+float	ft_fabs(float value);
 
 //=== Exit messages -------------------------------------------------------===//
 
-void	bad_setting_format_error();
-void	other_msg();
-void	bad_file_extention_msg();
+void	bad_setting_format_error(void);
+void	other_msg(void);
+void	bad_file_extention_msg(void);
 void	bad_arguments_msg(t_cub_data *cub_data);
-void	duplicated_setting_error();
-void	east_bad_file_path_error();
-void	north_bad_file_path_error();
-void	south_bad_file_path_error();
-void	west_bad_file_path_error();
-void	bad_color_code_format_error();
-void	missing_setting_error();
-void	bad_identifier_error();
-void	missing_map_error();
-void	unclosed_map_error();
-void	mlx_error();
-void	map_wrong_character_error();
-void	map_duplicated_player_spawn_pos();
-void	map_missing_player_spawn_pos();
+void	duplicated_setting_error(void);
+void	east_bad_file_path_error(void);
+void	north_bad_file_path_error(void);
+void	south_bad_file_path_error(void);
+void	west_bad_file_path_error(void);
+void	bad_color_code_format_error(void);
+void	missing_setting_error(void);
+void	bad_identifier_error(void);
+void	missing_map_error(void);
+void	unclosed_map_error(void);
+void	mlx_error(void);
+void	map_wrong_character_error(void);
+void	map_duplicated_player_spawn_pos(void);
+void	map_missing_player_spawn_pos(void);
 
 #endif

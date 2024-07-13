@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:27:29 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 17:51:09 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:20:15 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	store_setting(struct s_cub_data *cub_data, char **line_elements, int fd)
 	}
 	else if (store_colors(cub_data, line_elements, fd) == 0)
 	{
-        printf("Color stored successfully.\n");
+		printf("Color stored successfully.\n");
 	}
 	else
 	{
