@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 22:48:20 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/15 23:41:50 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 # define FOV 60.0f
 # define SENSITIVITY 5
-# define STRAFE_SPEED 0.2f
+# define STRAFE_SPEED 0.1f
 # define PLAYER_SPEED 0.2f
 # define HIT_BOX 0.2f
 

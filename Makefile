@@ -17,19 +17,19 @@ SRCS =  src/cub3D.c \
         src/parsing/store_settings/store_colors.c \
         src/parsing/store_settings/store_map.c \
         src/parsing/store_settings/store_textures.c \
-        src/game/render/floor_and_ceiling.c \
-		src/game/render/minimap.c \
-		src/game/render/raycasting.c \
-		src/game/render/render.c \
-		src/game/render/walls_textures.c \
-        src/game/render/weapon_logic.c \
-        src/game/utils/ft_pixel_put.c \
+        src/game/render.c \
+        src/game/game_algorithm.c \
+        src/game/graphics/floor_and_ceiling.c \
+		src/game/graphics/minimap.c \
+		src/game/graphics/raycasting.c \
+		src/game/graphics/walls_textures.c \
+        src/game/graphics/weapon.c \
+        src/game/utils/put_pixels.c \
 		src/game/utils/load_mlx.c \
 		src/game/utils/utils.c \
         src/game/keys/key_controls.c \
         src/game/keys/process_motion.c \
         src/game/keys/process_turn.c \
-        src/game/game_algorithm.c \
         include/get_next_line/get_next_line.c \
         include/get_next_line/get_next_line_utils.c \
 

@@ -6,11 +6,11 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:27:15 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 15:21:27 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/15 23:38:52 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 int	render(t_cub_data *data)
 {
