@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:06:50 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 15:26:01 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/15 20:49:20 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	scale_player_pos(float pos)
 {
 	pos *= MINIMAP_SIZE / (RANGE * 2);
-	pos += (RANGE * 2);
 	return (pos);
 }
 
