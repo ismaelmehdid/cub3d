@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 14:52:36 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:32:10 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 //=== Keys ----------------------------------------------------------------===//
 
+# define KEY_COUNT 6
 # define ESC 65307
 # define W 119
 # define A 97
@@ -93,6 +94,21 @@ typedef enum s_errors
 	MAP_DUPLICATED_PLAYER_SPAWN_POS,
 	OTHER
 }	t_errors;
+
+typedef enum e_key
+{
+    KEY_W,
+    KEY_A,
+    KEY_S,
+    KEY_D,
+    KEY_LEFT,
+    KEY_RIGHT,
+} t_key;
+
+typedef struct s_keys
+{
+    bool	keys[KEY_COUNT];
+} t_keys;
 
 typedef struct s_img
 {
@@ -195,6 +211,7 @@ typedef struct s_cub_data
 	struct s_player_data	player_data;
 	struct s_gun			gun;
 	struct s_walls			walls;
+	struct s_keys			keys;
 }	t_cub_data;
 
 typedef struct s_map_params // Specific struct helping for map parsing
@@ -257,6 +274,13 @@ int		render(t_cub_data *cub_data);
 void	raycasting(t_cub_data *data);
 void	weapon_logic(t_cub_data *data, int gun_frame);
 void	minimap_frame(t_cub_data *data);
+void    move_forward(t_cub_data *data);
+void    move_backward(t_cub_data *data);
+void    move_left(t_cub_data *data);
+void    move_right(t_cub_data *data);
+void	turn_left(t_cub_data *data);
+void	turn_right(t_cub_data *data);
+void	handle_keys(t_cub_data *data);
 
 //=== Utils ---------------------------------------------------------------===//
 
@@ -274,7 +298,8 @@ int		scale_player_pos(float pos);
 void	bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
 long	get_current_time_in_ms(void);
 float	deg_to_rad(int a);
-int		key_hook(int keycode, t_cub_data **data);
+int		key_press(int keycode, t_cub_data *data);
+int		key_release(int keycode, t_cub_data *data);
 int		mouse_hook(int button, int x, int y, t_cub_data *data);
 float	ft_fabs(float value);
 

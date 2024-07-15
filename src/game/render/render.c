@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:27:15 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 16:53:17 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:21:27 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	render(t_cub_data *data)
 		last_time = current_time;
 		gun_frame = (gun_frame + 1) % 2;
 	}
+	handle_keys(data);
 	fill_background(data, 0, 0);
 	raycasting(data);
 	draw_minimap(data);
