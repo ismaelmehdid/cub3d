@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 16:42:57 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 21:28:46 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ void	set_null_to_ptrs(t_cub_data *data)
 	data->keys.keys[3] = false;
 	data->keys.keys[4] = false;
 	data->keys.keys[5] = false;
+	data->walls.east.img_ptr = NULL;
+	data->walls.north.img_ptr = NULL;
+	data->walls.south.img_ptr = NULL;
+	data->walls.west.img_ptr = NULL;
 }
 
 static void	load_walls_imgs(t_cub_data *data)

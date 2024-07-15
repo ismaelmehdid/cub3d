@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:49 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/05 17:53:02 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 23:12:20 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	check_for_duplicate_settings(
 		|| (id == 'C' && cub_data->settings.ceiling_color != NULL))
 	{
 		free_double_array(&line_elements);
+		reach_eof_to_avoid_leaks(NULL, fd);
 		close (fd);
 		cub_exit(DUPLICATED_SETTING, cub_data);
 	}
@@ -75,6 +76,7 @@ static int	check_color_format_and_store(
 	if (!rgb_strings || !are_valid_rgb_values(rgb_strings))
 	{
 		free_double_array(&rgb_strings);
+		free(color);
 		return (1);
 	}
 	color->r = ft_atoi(rgb_strings[0]);
@@ -88,9 +90,11 @@ static int	check_color_format_and_store(
 	return (0);
 }
 
-int	store_colors(t_cub_data *cub_data, char **line_elements, int fd)
+int	store_colors(t_cub_data *cub_data,
+					char **line_elements,
+					int fd,
+					char id)
 {
-	char	id;
 	t_color	*color;
 
 	if (ft_strcmp("F", line_elements[0]) == 0
@@ -102,12 +106,14 @@ int	store_colors(t_cub_data *cub_data, char **line_elements, int fd)
 		if (!color)
 		{
 			free_double_array(&line_elements);
+			reach_eof_to_avoid_leaks(NULL, fd);
 			close(fd);
 			cub_exit(OTHER, cub_data);
 		}
 		if (check_color_format_and_store(cub_data, line_elements[1], color, id))
 		{
 			free_double_array(&line_elements);
+			reach_eof_to_avoid_leaks(NULL, fd);
 			close(fd);
 			cub_exit(BAD_COLOR_CODE_FORMAT, cub_data);
 		}

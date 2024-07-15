@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_messages4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 22:38:35 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:15:17 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 22:26:54 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,12 @@ void	map_missing_player_spawn_pos(void)
 {
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putstr_fd("\033[0;31mMissing player spawn position.\n\033[0m",
+		STDERR_FILENO);
+}
+
+void	map_missing(void)
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd("\033[0;31mNo map found in a file\n\033[0m",
 		STDERR_FILENO);
 }

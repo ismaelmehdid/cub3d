@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:20:51 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 22:42:38 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	texture_file_opening_test(
 	if (fd == -1)
 	{
 		free_double_array(&line_elements);
+		reach_eof_to_avoid_leaks(NULL, settings_fd);
 		close(settings_fd);
 		if (direction == 'E')
 			cub_exit(E_BAD_FILE_PATH, cub_data);
@@ -64,6 +65,7 @@ static void	check_for_duplicate_settings(
 		|| (direction == 'W' && cub_data->settings.w_texture_path != NULL))
 	{
 		free_double_array(&line_elements);
+		reach_eof_to_avoid_leaks(NULL, fd);
 		close (fd);
 		cub_exit(DUPLICATED_SETTING, cub_data);
 	}
@@ -86,6 +88,7 @@ int	store_texture_path(t_cub_data *cub_data, char **line_elements, int fd)
 		path = ft_strdup(line_elements[1]);
 		if (!path)
 		{
+			reach_eof_to_avoid_leaks(NULL, fd);
 			close(fd);
 			free_double_array(&line_elements);
 			cub_exit(OTHER, cub_data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_settings.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:56:17 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:18:17 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 22:22:20 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,43 +18,35 @@ static void	handle_error_and_exit(
 	t_cub_data *cub_data)
 {
 	free_double_array(&line_elements);
+	reach_eof_to_avoid_leaks(NULL, fd);
 	close(fd);
 	cub_exit(BAD_SETTING_FORMAT, cub_data);
 }
 
-static void	handle_line(struct s_cub_data *cub_data, char *line, int fd)
+static void	handle_line(struct s_cub_data *cub_data, char *line, int fd, int line_length)
 {
 	char	**elements;
 	char	*last_element;
-	int		line_length;
 
-	if (!is_only_spaces(line))
-	{
-		elements = ft_split(line, ' ');
-		if (!elements)
-			handle_error_and_exit(elements, fd, cub_data);
-		line_length = double_array_len(elements);
-		last_element = elements[line_length - 1];
-		elements[line_length - 1] = ft_strtrim(elements[line_length - 1], "\n");
-		if (!elements[line_length - 1])
-		{
-			free(last_element);
-			handle_error_and_exit(elements, fd, cub_data);
-		}
-		free(last_element);
-		if (cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
-		{
-			if (line_length != EXPECTED_SETTING_PARTS)
-				handle_error_and_exit(elements, fd, cub_data);
-			store_setting(cub_data, elements, fd);
-		}
-	}
-}
-
-static void	handle_line_and_free(t_cub_data *cub_data, char *line, int fd)
-{
-	handle_line(cub_data, line, fd);
+	elements = ft_split(line, ' ');
 	free(line);
+	if (!elements)
+		handle_error_and_exit(elements, fd, cub_data);
+	line_length = double_array_len(elements);
+	last_element = elements[line_length - 1];
+	elements[line_length - 1] = ft_strtrim(elements[line_length - 1], "\n");
+	if (!elements[line_length - 1])
+	{
+		free(last_element);
+		handle_error_and_exit(elements, fd, cub_data);
+	}
+	free(last_element);
+	if (cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
+	{
+		if (line_length != EXPECTED_SETTING_PARTS)
+			handle_error_and_exit(elements, fd, cub_data);
+		store_setting(cub_data, elements, fd);
+	}
 }
 
 void	extract_settings(struct s_cub_data *cub_data)
@@ -69,7 +61,10 @@ void	extract_settings(struct s_cub_data *cub_data)
 	while (line
 		&& cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)
 	{
-		handle_line_and_free(cub_data, line, fd);
+		if (!is_only_spaces(line))
+			handle_line(cub_data, line, fd, 0);
+		else
+			free(line);
 		line = get_next_line(fd);
 	}
 	if (!line && cub_data->utils.settings_already_set != BASE_SETTINGS_REQUIRED)

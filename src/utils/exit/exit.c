@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:30:40 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 16:39:18 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/15 22:25:15 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ void	cub_exit(t_errors code, t_cub_data *cub_data)
 	else if (code == MAP_MISSING_PLAYER_SPAWN_POS)
 	{
 		map_missing_player_spawn_pos();
+	}
+	else if (code == NO_MAP_IN_FILE)
+	{
+		map_missing();
 	}
 	free_everything(cub_data);
 	if (code == SUCCESS)

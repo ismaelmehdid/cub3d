@@ -14,9 +14,6 @@
 
 static void	game_algorithm(t_cub_data *data)
 {
-	printf("angle: %f\n", data->player_data.angle);
-	printf("x: %f\n", data->player_data.x);
-	printf("y: %f\n", data->player_data.y);
 	fill_background(data, 0, 0);
 	raycasting(data);
 	draw_minimap(data);

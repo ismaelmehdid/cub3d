@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:05:52 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/07 00:58:28 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 22:30:20 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	store_map(t_cub_data *cub_data, char *old_line, int fd)
 
 	line = old_line;
 	params.fd = fd;
-	while (is_only_spaces(line))
+	if (!line)
+		cub_exit(NO_MAP_IN_FILE, cub_data);
+	while (line && is_only_spaces(line))
 	{
 		free(line);
 		line = get_next_line(fd);

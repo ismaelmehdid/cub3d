@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_base_settings.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:27:29 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:20:15 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 22:52:44 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	store_setting(struct s_cub_data *cub_data, char **line_elements, int fd)
 	{
 		printf("Texture path stored successfully.\n");
 	}
-	else if (store_colors(cub_data, line_elements, fd) == 0)
+	else if (store_colors(cub_data, line_elements, fd, '0') == 0)
 	{
 		printf("Color stored successfully.\n");
 	}
 	else
 	{
 		free_double_array(&line_elements);
+		reach_eof_to_avoid_leaks(NULL, fd);
 		close(fd);
 		cub_exit(BAD_IDENTIFIER, cub_data);
 	}
