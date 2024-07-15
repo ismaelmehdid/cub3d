@@ -21,6 +21,7 @@ SRCS =  src/cub3D.c \
 		src/game/render/minimap.c \
 		src/game/render/raycasting.c \
 		src/game/render/render.c \
+		src/game/render/walls_textures.c \
         src/game/render/weapon_logic.c \
         src/game/utils/ft_pixel_put.c \
 		src/game/utils/load_mlx.c \
