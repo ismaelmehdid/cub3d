@@ -14,37 +14,49 @@
 
 static void	move_forward_back(int keycode, t_cub_data **data)
 {
+	float	new_x;
+	float	new_y;
+
+	new_x = (*data)->player_data.x;
+	new_y = (*data)->player_data.y;
 	if (keycode == W)
 	{
-		(*data)->player_data.x
-			+= PLAYER_SPEED * cos((*data)->player_data.angle);
-		(*data)->player_data.y
-			+= PLAYER_SPEED * sin((*data)->player_data.angle);
+		new_x += PLAYER_SPEED * cos((*data)->player_data.angle);
+		new_y += PLAYER_SPEED * sin((*data)->player_data.angle);
 	}
 	else if (keycode == S)
 	{
-		(*data)->player_data.x
-			-= PLAYER_SPEED * cos((*data)->player_data.angle);
-		(*data)->player_data.y
-			-= PLAYER_SPEED * sin((*data)->player_data.angle);
+		new_x -= PLAYER_SPEED * cos((*data)->player_data.angle);
+		new_y -= PLAYER_SPEED * sin((*data)->player_data.angle);
+	}
+	if ((*data)->settings.map[(int)new_y][(int)new_x] != '1')
+	{
+		(*data)->player_data.x = new_x;
+		(*data)->player_data.y = new_y;
 	}
 }
 
 static void	move_left_right(int keycode, t_cub_data **data)
 {
+	float	new_x;
+	float	new_y;
+
+	new_x = (*data)->player_data.x;
+	new_y = (*data)->player_data.y;
 	if (keycode == A)
 	{
-		(*data)->player_data.x
-			+= STRAFE_SPEED * sin((*data)->player_data.angle);
-		(*data)->player_data.y
-			-= STRAFE_SPEED * cos((*data)->player_data.angle);
+		new_x += STRAFE_SPEED * sin((*data)->player_data.angle);
+		new_y -= STRAFE_SPEED * cos((*data)->player_data.angle);
 	}
 	else if (keycode == D)
 	{
-		(*data)->player_data.x
-			-= STRAFE_SPEED * sin((*data)->player_data.angle);
-		(*data)->player_data.y
-			+= STRAFE_SPEED * cos((*data)->player_data.angle);
+		new_x -= STRAFE_SPEED * sin((*data)->player_data.angle);
+		new_y += STRAFE_SPEED * cos((*data)->player_data.angle);
+	}
+	if ((*data)->settings.map[(int)new_y][(int)new_x] != '1')
+	{
+		(*data)->player_data.x = new_x;
+		(*data)->player_data.y = new_y;
 	}
 }
 

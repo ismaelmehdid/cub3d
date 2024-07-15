@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:21:58 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:37:46 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,62 @@ static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
 	if (ray->line_draw_end >= data->mlx.win_height)
 		ray->line_draw_end = data->mlx.win_height - 1;
 }
+/*
+static void	put_wall(t_cub_data *data, t_ray_cast *ray, t_poles pole)
+{
+	int	y;
 
+	y = ray->line_draw_start;
+	if (pole == EAST)
+	{
+		
+	}
+	else if (pole == NORTH)
+	{
+		
+	}
+	else if (pole == SOUTH)
+	{
+
+	}
+	else if (pole == WEST)
+	{
+		
+	}
+}
+
+static void	put_wall_texture(t_cub_data *data, t_ray_cast *ray)
+{
+	if (ray->hit == 0) // vertical line hit so west or east
+	{
+		if (ray->ray_dir_x > 0) // ray going right so hitting east
+		{
+			
+		}
+		else // hitting west
+		{
+			
+		}
+	}
+	else // horizontal so north or south
+	{
+		if (ray->ray_dir_y > 0) // ray going up so hitting south (as the pixels coordinates are inverted (y+ is down))
+		{
+			
+		}
+		else // hitting north
+		{
+			
+		}
+	}
+}
+*/
 // for each columns of pixels, get the size of the wall with the player fov and draw it
 void	raycasting(t_cub_data *data)
 {
 	t_ray_cast	ray;
-	int			y;
 
 	ray.column = 0;
-	y = 0;
 	while (ray.column < data->mlx.win_width)
 	{
 		ray.map_x = (int)data->player_data.x; // initial position
@@ -118,8 +165,8 @@ void	raycasting(t_cub_data *data)
 		compute_raycasting_values(data, &ray);
 		dda_algorithm(data, &ray);
 		get_wall_dist(data, &ray);
-		int color = 255 / ray.perp_wall_dist; // need to change to put the texture of the wall
-		y = ray.line_draw_start;
+		int color = 255; // need to change to put the texture of the wall
+		int y = ray.line_draw_start;
 		while (y < ray.line_draw_end)
 		{
 			ft_mlx_pixel_put(data, ray.column, y, color);

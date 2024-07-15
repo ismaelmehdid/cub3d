@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:12:58 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:15:47 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define FOV 60.0f
 # define SENSITIVITY 5
 # define STRAFE_SPEED 0.5f
-# define PLAYER_SPEED 0.5f
+# define PLAYER_SPEED 0.2f
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -179,6 +179,14 @@ typedef struct s_player_data
 	char			pole;
 }	t_player_data;
 
+typedef struct s_walls
+{
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+}	t_walls;
+
 typedef struct s_cub_data
 {
 	struct s_cub_settings	settings;
@@ -186,6 +194,7 @@ typedef struct s_cub_data
 	struct s_mlx			mlx;
 	struct s_player_data	player_data;
 	struct s_gun			gun;
+	struct s_walls			walls;
 }	t_cub_data;
 
 typedef struct s_map_params // Specific struct helping for map parsing
@@ -214,6 +223,8 @@ typedef struct s_ray_cast
 	float	perp_wall_dist;
 	int		line_draw_start;
 	int		line_draw_end;
+	int		texture_x;
+	int		texture_y;
 }	t_ray_cast;
 
 typedef struct s_bresenham

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/12 16:36:40 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/14 18:28:28 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ void	free_everything(t_cub_data *cub_data)
 	free_texture_path(cub_data);
 	free_colors(cub_data);
 	free_map(cub_data);
-	destroy_mlx(cub_data);
+	destroy_mlx(cub_data); // need to destroy walls images
 	exit (0);
 }

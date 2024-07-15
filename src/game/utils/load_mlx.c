@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:04:30 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:27:26 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,34 @@ void	set_null_to_ptrs(t_cub_data *data)
 	data->mlx.win_ptr = NULL;
 }
 
+static void	load_walls_imgs(t_cub_data *data)
+{
+	data->walls.north.img_ptr = mlx_xpm_file_to_image(
+			data->mlx.mlx_ptr, data->settings.n_texture_path,
+			&data->walls.north.width, &data->walls.north.height);
+	data->walls.north.data = mlx_get_data_addr(
+			data->walls.north.img_ptr, &data->walls.north.bpp,
+			&data->walls.north.size_line, &data->walls.north.endian);
+	data->walls.south.img_ptr = mlx_xpm_file_to_image(
+			data->mlx.mlx_ptr, data->settings.s_texture_path,
+			&data->walls.south.width, &data->walls.south.height);
+	data->walls.south.data = mlx_get_data_addr(
+			data->walls.south.img_ptr, &data->walls.south.bpp,
+			&data->walls.south.size_line, &data->walls.south.endian);
+	data->walls.east.img_ptr = mlx_xpm_file_to_image(
+			data->mlx.mlx_ptr, data->settings.e_texture_path,
+			&data->walls.east.width, &data->walls.east.height);
+	data->walls.east.data = mlx_get_data_addr(
+			data->walls.east.img_ptr, &data->walls.east.bpp,
+			&data->walls.east.size_line, &data->walls.east.endian);
+	data->walls.west.img_ptr = mlx_xpm_file_to_image(
+			data->mlx.mlx_ptr, data->settings.w_texture_path,
+			&data->walls.west.width, &data->walls.west.height);
+	data->walls.west.data = mlx_get_data_addr(
+			data->walls.west.img_ptr, &data->walls.west.bpp,
+			&data->walls.west.size_line, &data->walls.west.endian);
+}
+
 void	load_mlx(t_cub_data *data)
 {
 	data->mlx.mlx_ptr = mlx_init();
@@ -97,6 +125,7 @@ void	load_mlx(t_cub_data *data)
 			data->mlx.win_height);
 	data->mlx.addr = mlx_get_data_addr(data->mlx.img,
 			&data->mlx.bits, &data->mlx.line_len, &data->mlx.edian);
+	load_walls_imgs(data);
 	load_weapon_std_imgs(data);
 	load_weapon_shoot_imgs(data);
 	if (!data->gun.shoot1.img_ptr || !data->gun.shoot2.img_ptr
