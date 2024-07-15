@@ -41,9 +41,7 @@ LIBFT_DIR = include/libft/libft.a
 
 MLX_DIR = include/minilibx-linux
 
-MLX_LINK = -L$(MLX_DIR) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm # -lz can't compile this
-
-MATH_FLAG = -lm
+MLX_LINK = -L$(MLX_DIR) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 
 RM = rm -rf
 
@@ -54,7 +52,7 @@ CFLAGS = -Wall -Wextra -Werror -Iinclude
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_DIR) $(MLX_DIR)/libmlx.a
-	$(CC) $(CFLAGS) $(MATH_FLAG) $(OBJS) $(MLX_LINK) $(LIBFT_DIR) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX_LINK) $(LIBFT_DIR) -o $(NAME)
 	$(CLEAR)
 	@printf "\033[1;32m$(NAME) built successfully\033[0m\n"
 
