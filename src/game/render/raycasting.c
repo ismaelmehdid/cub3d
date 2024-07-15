@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 13:37:46 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:24:24 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ static void	compute_raycasting_values(t_cub_data *data, t_ray_cast *ray)
 
 static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
 {
-	int		line_height;
-
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - data->player_data.x
 				+ (1 - ray->step_x) / 2) / ray->ray_dir_x;
@@ -94,64 +92,33 @@ static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
 				+ (1 - ray->step_y) / 2) / ray->ray_dir_y;
 	ray->perp_wall_dist
 		= ray->perp_wall_dist * cos(ray->ray_angle - data->player_data.angle);
-	line_height = (int)(data->mlx.win_height / ray->perp_wall_dist);
-	ray->line_draw_start = -line_height / 2 + data->mlx.win_height / 2;
+	ray->line_height = (int)(data->mlx.win_height / ray->perp_wall_dist);
+	ray->line_draw_start = -(ray->line_height) / 2 + data->mlx.win_height / 2;
 	if (ray->line_draw_start < 0)
 		ray->line_draw_start = 0;
-	ray->line_draw_end = line_height / 2 + data->mlx.win_height / 2;
+	ray->line_draw_end = ray->line_height / 2 + data->mlx.win_height / 2;
 	if (ray->line_draw_end >= data->mlx.win_height)
 		ray->line_draw_end = data->mlx.win_height - 1;
-}
-/*
-static void	put_wall(t_cub_data *data, t_ray_cast *ray, t_poles pole)
-{
-	int	y;
-
-	y = ray->line_draw_start;
-	if (pole == EAST)
-	{
-		
-	}
-	else if (pole == NORTH)
-	{
-		
-	}
-	else if (pole == SOUTH)
-	{
-
-	}
-	else if (pole == WEST)
-	{
-		
-	}
 }
 
 static void	put_wall_texture(t_cub_data *data, t_ray_cast *ray)
 {
-	if (ray->hit == 0) // vertical line hit so west or east
+	if (ray->side == 0) // vertical line hit so west or east
 	{
 		if (ray->ray_dir_x > 0) // ray going right so hitting east
-		{
-			
-		}
+			put_wall(data, ray, &data->walls.east);
 		else // hitting west
-		{
-			
-		}
+			put_wall(data, ray, &data->walls.west);
 	}
 	else // horizontal so north or south
 	{
-		if (ray->ray_dir_y > 0) // ray going up so hitting south (as the pixels coordinates are inverted (y+ is down))
-		{
-			
-		}
+		if (ray->ray_dir_y > 0) // ray going up so hitting south
+			put_wall(data, ray, &data->walls.south);
 		else // hitting north
-		{
-			
-		}
+			put_wall(data, ray, &data->walls.north);
 	}
 }
-*/
+
 // for each columns of pixels, get the size of the wall with the player fov and draw it
 void	raycasting(t_cub_data *data)
 {
@@ -165,13 +132,7 @@ void	raycasting(t_cub_data *data)
 		compute_raycasting_values(data, &ray);
 		dda_algorithm(data, &ray);
 		get_wall_dist(data, &ray);
-		int color = 255; // need to change to put the texture of the wall
-		int y = ray.line_draw_start;
-		while (y < ray.line_draw_end)
-		{
-			ft_mlx_pixel_put(data, ray.column, y, color);
-			y++;
-		}
+		put_wall_texture(data, &ray);
 		ray.column++;
 	}
 }

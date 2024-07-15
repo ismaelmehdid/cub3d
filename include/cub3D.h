@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 12:15:47 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 14:52:36 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,7 @@ typedef struct s_ray_cast
 	int		line_draw_end;
 	int		texture_x;
 	int		texture_y;
+	int		line_height;
 }	t_ray_cast;
 
 typedef struct s_bresenham
