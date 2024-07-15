@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 15:32:24 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 20:08:25 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,6 @@ static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
 	ray->line_draw_end = ray->line_height / 2 + data->mlx.win_height / 2;
 	if (ray->line_draw_end >= data->mlx.win_height)
 		ray->line_draw_end = data->mlx.win_height - 1;
-}
-
-static void	put_wall_texture(t_cub_data *data, t_ray_cast *ray)
-{
-	if (ray->side == 0) // vertical line hit so west or east
-	{
-		if (ray->ray_dir_x > 0) // ray going right so hitting east
-			put_wall(data, ray, &data->walls.east);
-		else // hitting west
-			put_wall(data, ray, &data->walls.west);
-	}
-	else // horizontal so north or south
-	{
-		if (ray->ray_dir_y > 0) // ray going up so hitting south
-			put_wall(data, ray, &data->walls.south);
-		else // hitting north
-			put_wall(data, ray, &data->walls.north);
-	}
 }
 
 // for each columns of pixels, get the size of the wall with the player fov and draw it

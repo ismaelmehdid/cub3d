@@ -17,13 +17,14 @@ void    move_forward(t_cub_data *data)
 	float	new_x;
 	float	new_y;
 
-	new_x = data->player_data.x;
-	new_y = data->player_data.y;
-	new_x += PLAYER_SPEED * cos(data->player_data.angle);
-	new_y += PLAYER_SPEED * sin(data->player_data.angle);
-	if (data->settings.map[(int)new_y][(int)new_x] != '1')
+	new_x = data->player_data.x + PLAYER_SPEED * cos(data->player_data.angle);
+	if (data->settings.map[(int)data->player_data.y][(int)new_x] != '1')
 	{
 		data->player_data.x = new_x;
+	}
+	new_y = data->player_data.y + PLAYER_SPEED * sin(data->player_data.angle);
+	if (data->settings.map[(int)new_y][(int)data->player_data.x] != '1')
+	{
 		data->player_data.y = new_y;
 	}
 }
@@ -33,13 +34,14 @@ void	move_backward(t_cub_data *data)
 	float	new_x;
 	float	new_y;
 
-	new_x = data->player_data.x;
-	new_y = data->player_data.y;
-	new_x -= PLAYER_SPEED * cos(data->player_data.angle);
-	new_y -= PLAYER_SPEED * sin(data->player_data.angle);
-	if (data->settings.map[(int)new_y][(int)new_x] != '1')
+	new_x = data->player_data.x - PLAYER_SPEED * cos(data->player_data.angle);
+	if (data->settings.map[(int)data->player_data.y][(int)new_x] != '1')
 	{
 		data->player_data.x = new_x;
+	}
+	new_y = data->player_data.y - PLAYER_SPEED * sin(data->player_data.angle);
+	if (data->settings.map[(int)new_y][(int)data->player_data.x] != '1')
+	{
 		data->player_data.y = new_y;
 	}
 }
@@ -49,13 +51,14 @@ void	move_left(t_cub_data *data)
 	float	new_x;
 	float	new_y;
 
-	new_x = data->player_data.x;
-	new_y = data->player_data.y;
-	new_x += STRAFE_SPEED * sin(data->player_data.angle);
-	new_y -= STRAFE_SPEED * cos(data->player_data.angle);
-	if (data->settings.map[(int)new_y][(int)new_x] != '1')
+	new_x = data->player_data.x + STRAFE_SPEED * sin(data->player_data.angle);
+	if (data->settings.map[(int)data->player_data.y][(int)new_x] != '1')
 	{
 		data->player_data.x = new_x;
+	}
+	new_y = data->player_data.y - STRAFE_SPEED * cos(data->player_data.angle);
+	if (data->settings.map[(int)new_y][(int)data->player_data.x] != '1')
+	{
 		data->player_data.y = new_y;
 	}
 }
@@ -65,13 +68,14 @@ void	move_right(t_cub_data *data)
 	float	new_x;
 	float	new_y;
 
-	new_x = data->player_data.x;
-	new_y = data->player_data.y;
-	new_x -= STRAFE_SPEED * sin(data->player_data.angle);
-	new_y += STRAFE_SPEED * cos(data->player_data.angle);
-	if (data->settings.map[(int)new_y][(int)new_x] != '1')
+	new_x = data->player_data.x - STRAFE_SPEED * sin(data->player_data.angle);
+	if (data->settings.map[(int)data->player_data.y][(int)new_x] != '1')
 	{
 		data->player_data.x = new_x;
+	}
+	new_y = data->player_data.y + STRAFE_SPEED * cos(data->player_data.angle);
+	if (data->settings.map[(int)new_y][(int)data->player_data.x] != '1')
+	{
 		data->player_data.y = new_y;
 	}
 }

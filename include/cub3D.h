@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 15:32:10 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/15 20:10:15 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@
 
 # define FOV 60.0f
 # define SENSITIVITY 5
-# define STRAFE_SPEED 0.5f
+# define STRAFE_SPEED 0.2f
 # define PLAYER_SPEED 0.2f
+# define HIT_BOX 0.2f
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -272,6 +273,7 @@ void	fill_background(t_cub_data *data, int x, int y);
 void	draw_minimap(t_cub_data *data);
 int		render(t_cub_data *cub_data);
 void	raycasting(t_cub_data *data);
+void	put_wall_texture(t_cub_data *data, t_ray_cast *ray);
 void	weapon_logic(t_cub_data *data, int gun_frame);
 void	minimap_frame(t_cub_data *data);
 void    move_forward(t_cub_data *data);
