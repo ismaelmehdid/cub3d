@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:46 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:23 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/16 16:49:41 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 
 	cub_data.utils.argc = argc;
 	cub_data.utils.argv = argv;
-	set_null_to_ptrs(&cub_data);
 	parsing(&cub_data);
 	load_mlx(&cub_data);
 	game_loop(&cub_data);

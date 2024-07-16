@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:08:35 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/16 16:52:24 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ static void	draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 {
 	dat->utils.minimap.cell_width = MINIMAP_SIZE / (2 * RANGE);
 	dat->utils.minimap.cell_height = MINIMAP_SIZE / (2 * RANGE);
-	offset_x_y[0] = dat->player_data.mm_x / dat->utils.minimap.cell_width - RANGE;
-	offset_x_y[1] = dat->player_data.mm_y / dat->utils.minimap.cell_height - RANGE;
+	offset_x_y[0]
+		= dat->player_data.mm_x / dat->utils.minimap.cell_width - RANGE;
+	offset_x_y[1]
+		= dat->player_data.mm_y / dat->utils.minimap.cell_height - RANGE;
 	i[0] = (int)offset_x_y[1];
 	while (i[0] < (int)offset_x_y[1] + 2 * RANGE)
 	{

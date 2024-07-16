@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_messages5.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/02 16:30:40 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/16 16:45:32 by imehdid          ###   ########.fr       */
+/*   Created: 2024/07/16 16:06:51 by imehdid           #+#    #+#             */
+/*   Updated: 2024/07/16 16:38:15 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../../../include/cub3D.h"
 
-void	cub_exit(t_errors code, t_cub_data *cub_data)
+void	cub_exit_success(void)
 {
-	if (code < sizeof(cub_data->utils.exit_funcs)
-		/ sizeof(cub_data->utils.exit_funcs[0]))
-	{
-		cub_data->utils.exit_funcs[code]();
-	}
-	free_everything(cub_data);
-	if (code == SUCCESS)
-		exit(SUCCESS);
-	exit(EXIT_FAILURE);
+	printf("\033[0;32mCub3D: Program exited successfully.\033[0m\n");
 }

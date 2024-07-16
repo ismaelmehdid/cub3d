@@ -45,7 +45,7 @@ int	key_press(int keycode, t_cub_data *data)
 		data->keys.keys[KEY_LEFT] = true;
 	else if (keycode == RIGHT_ARROW)
 		data->keys.keys[KEY_RIGHT] = true;
-    return (0);
+	return (0);
 }
 
 void	handle_keys(t_cub_data *data)

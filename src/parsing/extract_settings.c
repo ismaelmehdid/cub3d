@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_settings.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:56:17 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 22:22:20 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/16 16:49:58 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static void	handle_error_and_exit(
 	cub_exit(BAD_SETTING_FORMAT, cub_data);
 }
 
-static void	handle_line(struct s_cub_data *cub_data, char *line, int fd, int line_length)
+static void	handle_line(
+	struct s_cub_data *cub_data,
+	char *line,
+	int fd,
+	int line_length)
 {
 	char	**elements;
 	char	*last_element;

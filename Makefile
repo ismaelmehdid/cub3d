@@ -9,6 +9,7 @@ SRCS =  src/cub3D.c \
         src/utils/exit/exit_messages/exit_messages2.c \
         src/utils/exit/exit_messages/exit_messages3.c \
         src/utils/exit/exit_messages/exit_messages4.c \
+		src/utils/exit/exit_messages/exit_messages5.c \
         src/utils/other/utils.c \
 		src/utils/other/utils2.c \
         src/utils/exit/free_all.c \

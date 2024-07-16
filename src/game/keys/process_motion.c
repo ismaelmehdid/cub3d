@@ -12,7 +12,7 @@
 
 #include "../../../include/cub3D.h"
 
-void    move_forward(t_cub_data *data)
+void	move_forward(t_cub_data *data)
 {
 	float	new_x;
 	float	new_y;

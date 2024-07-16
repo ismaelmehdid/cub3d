@@ -22,7 +22,7 @@ void	turn_left(t_cub_data *data)
 		data->player_data.angle += 2 * M_PI;
 }
 
-void    turn_right(t_cub_data *data)
+void	turn_right(t_cub_data *data)
 {
 	float	radian_step;
 
