@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/16 16:44:26 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:36:28 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define WHITE 0xffffff
 # define GREY 0x808080
 # define RED 0xff0000
+# define BLACK 0x000000
 
 //=== Minimap -------------------------------------------------------------===//
 
@@ -63,6 +64,17 @@
 # define STRAFE_SPEED 0.1f
 # define PLAYER_SPEED 0.2f
 # define HIT_BOX 0.2f
+
+//=== Textures ------------------------------------------------------------===//
+
+# define GUN_IMG_1 "./game_data/textures/std1.xpm"
+# define GUN_IMG_2 "./game_data/textures/std2.xpm"
+# define GUN_IMG_3 "./game_data/textures/std3.xpm"
+# define GUN_IMG_4 "./game_data/textures/std4.xpm"
+# define SHOOT_IMG_1 "./game_data/textures/shoot.xpm"
+# define SHOOT_IMG_2 "./game_data/textures/shoot2.xpm"
+# define SHOOT_IMG_3 "./game_data/textures/shoot3.xpm"
+# define FRAME "./game_data/textures/minimap_frame.xpm"
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -157,6 +169,7 @@ typedef struct s_minimap
 {
 	int		cell_width;
 	int		cell_height;
+	t_img	frame;
 }	t_minimap_data;
 
 typedef struct s_cub_utils
@@ -281,9 +294,8 @@ void	check_map_validity(t_cub_data *cub_data);
 //=== Game ----------------------------------------------------------------===//
 
 void	game_loop(t_cub_data *data);
-void	ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	fill_background(t_cub_data *data, int x, int y);
-void	draw_minimap(t_cub_data *data);
+void	draw_minimap(t_cub_data *data, int x, int y);
 int		render(t_cub_data *cub_data);
 void	raycasting(t_cub_data *data);
 void	put_wall_texture(t_cub_data *data, t_ray_cast *ray);
@@ -311,6 +323,7 @@ void	reach_eof_to_avoid_leaks(char *line, int fd);
 void	load_mlx(t_cub_data *data);
 void	set_null_to_ptrs(t_cub_data *data);
 int		scale_player_pos(float pos);
+void	ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
 long	get_current_time_in_ms(void);
 float	deg_to_rad(int a);

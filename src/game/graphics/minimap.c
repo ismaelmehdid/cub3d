@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/16 16:52:24 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:35:44 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ static void	draw_view_direction(t_cub_data *data)
 	bresenham_line_draw(data, start_x_y, end_x_y);
 }
 
-void	draw_minimap(t_cub_data *data)
+
+void	draw_minimap(t_cub_data *data, int x, int y)
 {
 	int		i[2];
 	float	offset_x_y[2];
@@ -114,6 +115,16 @@ void	draw_minimap(t_cub_data *data)
 	i[1] = 0;
 	offset_x_y[0] = 0;
 	offset_x_y[1] = 0;
+	while (y < 231)
+	{
+		x = 0;
+		while (x < 231)
+		{
+			ft_mlx_pixel_put(data, x, y, BLACK);
+			x++;
+		}
+		y++;
+	}
 	data->player_data.mm_x = scale_player_pos(data->player_data.x);
 	data->player_data.mm_y = scale_player_pos(data->player_data.y);
 	draw_map_elements(data, i, offset_x_y);

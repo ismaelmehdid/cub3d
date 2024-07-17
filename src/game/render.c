@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:27:15 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 23:38:52 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:37:56 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	render(t_cub_data *data)
 	handle_keys(data);
 	fill_background(data, 0, 0);
 	raycasting(data);
-	draw_minimap(data);
+	draw_minimap(data, 0, 0);
 	weapon_logic(data, gun_frame);
 	mlx_put_image_to_window(data->mlx.mlx_ptr,
 		data->mlx.win_ptr, data->mlx.img, 0, 0);

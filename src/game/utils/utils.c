@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 16:06:50 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 20:49:20 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:35:08 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,29 @@ int	scale_player_pos(float pos)
 
 void	minimap_frame(t_cub_data *data)
 {
-	int	x0_y0[2];
-	int	x1_y1[2];
+	t_img	*frame;
+	int		x;
+	int		y;
+	int		color;
 
-	x0_y0[0] = 0;
-	x0_y0[1] = 220;
-	x1_y1[0] = 220;
-	x1_y1[1] = 220;
-	bresenham_line_draw(data, x0_y0, x1_y1);
-	x0_y0[0] = 220;
-	x0_y0[1] = 0;
-	bresenham_line_draw(data, x0_y0, x1_y1);
+	frame = &data->utils.minimap.frame;
+	y = 0;
+	while (y < frame->height)
+	{
+		x = 0;
+		while (x < frame->width)
+		{
+			color = *(int *)(frame->data + y * \
+				frame->size_line + x * (frame->bpp / 8));
+			if ((color & 0xFFFFFF) != BLACK)
+			{
+				*(int *)(data->mlx.addr + y * \
+					data->mlx.line_len + x * (data->mlx.bits / 8)) = color;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 long	get_current_time_in_ms(void)
