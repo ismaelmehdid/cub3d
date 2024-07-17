@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 16:34:06 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/16 16:45:47 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:21:58 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ void	reach_eof_to_avoid_leaks(char *line, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+}
+
+int	ft_abs(int value)
+{
+	if (value < 0)
+		return (-value);
+	return (value);
 }

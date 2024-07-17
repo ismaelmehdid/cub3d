@@ -23,8 +23,8 @@ void	bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2])
 {
 	t_bresenham	var;
 
-	var.dx_dy[0] = abs(x1_y1[0] - x0_y0[0]);
-	var.dx_dy[1] = -abs(x1_y1[1] - x0_y0[1]);
+	var.dx_dy[0] = ft_abs(x1_y1[0] - x0_y0[0]);
+	var.dx_dy[1] = -ft_abs(x1_y1[1] - x0_y0[1]);
 	var.sx_sy[0] = get_sx_sy(x0_y0[0], x1_y1[0]);
 	var.sx_sy[1] = get_sx_sy(x0_y0[1], x1_y1[1]);
 	var.err = var.dx_dy[0] + var.dx_dy[1];

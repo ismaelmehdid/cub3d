@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 21:26:06 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/17 15:26:27 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	destroy_mlx(t_cub_data *data)
 	}
 }
 
-static void	free_walls_images(t_cub_data *data)
+static void	free_walls_and_frame_imgs(t_cub_data *data)
 {
 	if (data->mlx.mlx_ptr && data->walls.east.img_ptr)
 		mlx_destroy_image(data->mlx.mlx_ptr, data->walls.east.img_ptr);
@@ -51,6 +51,11 @@ static void	free_walls_images(t_cub_data *data)
 		mlx_destroy_image(data->mlx.mlx_ptr, data->walls.west.img_ptr);
 	if (data->mlx.mlx_ptr && data->walls.south.img_ptr)
 		mlx_destroy_image(data->mlx.mlx_ptr, data->walls.south.img_ptr);
+	if (data->mlx.mlx_ptr && data->utils.minimap.frame.img_ptr)
+	{
+		mlx_destroy_image(data->mlx.mlx_ptr,
+			data->utils.minimap.frame.img_ptr);
+	}
 }
 
 static void	free_colors(t_cub_data *data)
@@ -96,7 +101,7 @@ void	free_everything(t_cub_data *data)
 	free_texture_path(data);
 	free_colors(data);
 	free_double_array(&data->settings.map);
-	free_walls_images(data);
+	free_walls_and_frame_imgs(data);
 	destroy_mlx(data);
 	exit (0);
 }

@@ -16,7 +16,7 @@ static void	game_algorithm(t_cub_data *data)
 {
 	fill_background(data, 0, 0);
 	raycasting(data);
-	draw_minimap(data);
+	draw_minimap(data, 0, 0);
 	mlx_put_image_to_window(data->mlx.mlx_ptr,
 		data->mlx.win_ptr, data->mlx.img, 0, 0);
 	mlx_loop_hook(data->mlx.mlx_ptr, render, data);

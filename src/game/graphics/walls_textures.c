@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:35 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 17:01:25 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:16:02 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static void	get_wall_texture_coords(
 		wall_x = data->player_data.y + ray->perp_wall_dist * ray->ray_dir_y;
 	else // vertical line hit so calculing the ray hit position with the y axis
 		wall_x = data->player_data.x + ray->perp_wall_dist * ray->ray_dir_x;
+	wall_x -= floor(wall_x); // get the fractional part of wall_x
 	ray->texture_x = (int)(wall_x * (float)(texture->width)); // get the exact x of texture_x by scaling wall_x with the texture size
+	if ((ray->side == 0 && ray->ray_dir_x < 0) || (ray->side == 1 && ray->ray_dir_y > 0)) // inverting the textures of the west and the south
+		ray->texture_x = texture->width - ray->texture_x - 1;
 }
 
 static void	put_wall(t_cub_data *data, t_ray_cast *ray, t_img *texture)

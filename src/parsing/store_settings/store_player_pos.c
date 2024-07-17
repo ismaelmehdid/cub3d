@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 00:57:57 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/15 13:19:23 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:19:05 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	check_if_player_pos(t_cub_data *cub_data, bool *set, int i, int j)
 			cub_data->player_data.angle = M_PI / 2;
 		else if (cub_data->player_data.pole == 'W')
 			cub_data->player_data.angle = M_PI;
-		cub_data->player_data.x = i;
-		cub_data->player_data.y = j;
+		cub_data->player_data.x = i + 0.5;
+		cub_data->player_data.y = j + 0.5;
 		*set = true;
 	}
 }
