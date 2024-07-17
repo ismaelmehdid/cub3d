@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/16 16:44:26 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/16 16:58:09 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,6 @@
 # define HIT_BOX 0.2f
 
 //=== Data structures -----------------------------------------------------===//
-
-typedef enum s_poles // usefull ?
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST
-}	t_poles;
 
 // If you add an error code, make sure you update the array of pointers to the
 // exit functions in 'init_exit_functions_array' function in the parsing.c file
