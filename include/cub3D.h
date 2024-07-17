@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 15:36:28 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/17 16:12:27 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@
 
 //=== Minimap -------------------------------------------------------------===//
 
-# define PLAYER_DOT_SIZE 4
-# define MINIMAP_SIZE 200
-# define RANGE 5
+# define PLAYER_DOT_SIZE 4.0f
+# define MINIMAP_SIZE 200.0f
+# define RANGE 5.0f
 
 //=== Player Settings -----------------------------------------------------===//
 
