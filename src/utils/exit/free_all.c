@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 15:26:27 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/18 14:01:20 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	free_walls_and_frame_imgs(t_cub_data *data)
 		mlx_destroy_image(data->mlx.mlx_ptr, data->walls.west.img_ptr);
 	if (data->mlx.mlx_ptr && data->walls.south.img_ptr)
 		mlx_destroy_image(data->mlx.mlx_ptr, data->walls.south.img_ptr);
+	if (data->mlx.mlx_ptr && data->walls.door.img_ptr)
+		mlx_destroy_image(data->mlx.mlx_ptr, data->walls.door.img_ptr);
 	if (data->mlx.mlx_ptr && data->utils.minimap.frame.img_ptr)
 	{
 		mlx_destroy_image(data->mlx.mlx_ptr,

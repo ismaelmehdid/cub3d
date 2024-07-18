@@ -27,10 +27,12 @@ SRCS =  src/cub3D.c \
         src/game/graphics/weapon.c \
         src/game/utils/put_pixels.c \
 		src/game/utils/load_mlx.c \
+		src/game/utils/load_mlx2.c \
 		src/game/utils/utils.c \
         src/game/keys/key_controls.c \
         src/game/keys/process_motion.c \
         src/game/keys/process_turn.c \
+		src/game/keys/process_usage.c \
         include/get_next_line/get_next_line.c \
         include/get_next_line/get_next_line_utils.c \
 

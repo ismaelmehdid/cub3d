@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 15:29:34 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/18 13:56:55 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	load_mlx(t_cub_data *data)
 	data->mlx.addr = mlx_get_data_addr(data->mlx.img,
 			&data->mlx.bits, &data->mlx.line_len, &data->mlx.edian);
 	load_walls_imgs(data);
+	load_door_img(data);
 	load_textures_imgs(data);
 	get_imgs_data(data);
 }

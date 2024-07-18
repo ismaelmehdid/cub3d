@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:35 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 17:16:02 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/18 15:28:15 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ static void	put_wall(t_cub_data *data, t_ray_cast *ray, t_img *texture)
 
 void	put_wall_texture(t_cub_data *data, t_ray_cast *ray)
 {
-	if (ray->side == 0) // vertical line hit so west or east
+	if (ray->door_hit) // don't put texture if it's an open door
+		put_wall(data, ray, &data->walls.door);
+	else if (ray->side == 0) // vertical line hit so west or east
 	{
 		if (ray->ray_dir_x > 0) // ray going right so hitting east
 			put_wall(data, ray, &data->walls.east);

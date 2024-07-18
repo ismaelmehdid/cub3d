@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:31:28 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/13 17:19:21 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/18 13:37:38 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	check_map_closed(t_cub_data *cub_data, char **map)
 		while (map[j][i])
 		{
 			if (map[j][i] != '0' && map[j][i] != '1' && map[j][i] != ' '
+				&& map[j][i] != 'O' && map[j][i] != 'C'
 				&& !is_player_spawn_pos(map[j][i]))
 				cub_exit(MAP_WRONG_CHARACTER, cub_data);
 			if (map[j][i] == '0' || is_player_spawn_pos(map[j][i]))

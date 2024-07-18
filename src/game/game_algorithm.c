@@ -14,6 +14,9 @@
 
 static void	game_algorithm(t_cub_data *data)
 {
+	t_ray_cast	ray;
+
+	data->ray = &ray;
 	fill_background(data, 0, 0);
 	raycasting(data);
 	draw_minimap(data, 0, 0);

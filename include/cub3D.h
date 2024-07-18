@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 17:22:14 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/18 15:24:53 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define D 100
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
+# define E 101
 
 //=== Colors --------------------------------------------------------------===//
 
@@ -75,6 +76,7 @@
 # define SHOOT_IMG_2 "./game_data/textures/shoot2.xpm"
 # define SHOOT_IMG_3 "./game_data/textures/shoot3.xpm"
 # define FRAME "./game_data/textures/minimap_frame.xpm"
+# define DOOR "./game_data/textures/door.xpm"
 
 //=== Data structures -----------------------------------------------------===//
 
@@ -115,7 +117,7 @@ typedef enum e_key
 	KEY_S,
 	KEY_D,
 	KEY_LEFT,
-	KEY_RIGHT,
+	KEY_RIGHT
 }	t_key;
 
 typedef struct s_keys
@@ -216,6 +218,7 @@ typedef struct s_walls
 	t_img	south;
 	t_img	east;
 	t_img	west;
+	t_img	door;
 }	t_walls;
 
 typedef struct s_cub_data
@@ -224,6 +227,7 @@ typedef struct s_cub_data
 	struct s_cub_utils		utils;
 	struct s_mlx			mlx;
 	struct s_player_data	player_data;
+	struct s_ray_cast		*ray;
 	struct s_gun			gun;
 	struct s_walls			walls;
 	struct s_keys			keys;
@@ -258,6 +262,11 @@ typedef struct s_ray_cast
 	int		texture_x;
 	int		texture_y;
 	int		line_height;
+	bool	door_hit;
+	bool	player_facing_door;
+	int		x_faced_door;
+	int		y_faced_door;
+	bool	hit;
 }	t_ray_cast;
 
 typedef struct s_bresenham
@@ -300,6 +309,7 @@ void	move_right(t_cub_data *data);
 void	turn_left(t_cub_data *data);
 void	turn_right(t_cub_data *data);
 void	handle_keys(t_cub_data *data);
+void	open_or_close_door(t_cub_data *data);
 
 //=== Utils ---------------------------------------------------------------===//
 
@@ -313,6 +323,7 @@ void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
 void	reach_eof_to_avoid_leaks(char *line, int fd);
 void	load_mlx(t_cub_data *data);
+void	load_door_img(t_cub_data *data);
 void	set_null_to_ptrs(t_cub_data *data);
 int		scale_player_pos(float pos);
 void	ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);

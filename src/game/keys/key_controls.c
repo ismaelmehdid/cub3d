@@ -45,6 +45,8 @@ int	key_press(int keycode, t_cub_data *data)
 		data->keys.keys[KEY_LEFT] = true;
 	else if (keycode == RIGHT_ARROW)
 		data->keys.keys[KEY_RIGHT] = true;
+	else if (keycode == E)
+		open_or_close_door(data);
 	return (0);
 }
 
