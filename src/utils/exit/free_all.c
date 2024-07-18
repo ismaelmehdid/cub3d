@@ -6,7 +6,11 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/18 14:01:20 by imehdid          ###   ########.fr       */
+=======
+/*   Updated: 2024/07/18 15:47:07 by asyvash          ###   ########.fr       */
+>>>>>>> d1e09f9a123bbb205d0ff2dd0cd68aba62f1d06a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +104,8 @@ static void	free_texture_path(t_cub_data *data)
 
 void	free_everything(t_cub_data *data)
 {
+	if (data->mlx.mlx_ptr && data->mlx.win_ptr)
+		mlx_mouse_show(data->mlx.mlx_ptr, data->mlx.win_ptr);
 	free_texture_path(data);
 	free_colors(data);
 	free_double_array(&data->settings.map);

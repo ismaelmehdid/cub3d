@@ -6,7 +6,11 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/18 13:56:55 by imehdid          ###   ########.fr       */
+=======
+/*   Updated: 2024/07/18 15:42:15 by asyvash          ###   ########.fr       */
+>>>>>>> d1e09f9a123bbb205d0ff2dd0cd68aba62f1d06a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +136,7 @@ void	load_mlx(t_cub_data *data)
 			data->mlx.win_width, data->mlx.win_height, "cub3D");
 	if (!data->mlx.win_ptr)
 		cub_exit(MLX_ERROR, data);
+	mlx_mouse_hide(data->mlx.mlx_ptr, data->mlx.win_ptr);
 	data->mlx.img = mlx_new_image(data->mlx.mlx_ptr, data->mlx.win_width,
 			data->mlx.win_height);
 	if (!data->mlx.img)

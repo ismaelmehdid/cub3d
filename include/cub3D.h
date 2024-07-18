@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/18 15:24:53 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/18 16:09:57 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@
 
 # define FOV 60.0f
 # define SENSITIVITY 5
+# define MOUSE_SENSITIVITY 0.015f
+# define TRESHOLD 10
 # define STRAFE_SPEED 0.1f
 # define PLAYER_SPEED 0.2f
 # define HIT_BOX 0.2f
@@ -332,7 +334,8 @@ long	get_current_time_in_ms(void);
 float	deg_to_rad(int a);
 int		key_press(int keycode, t_cub_data *data);
 int		key_release(int keycode, t_cub_data *data);
-int		mouse_hook(int button, int x, int y, t_cub_data *data);
+int		mouse_hook_shoot(int button, int x, int y, t_cub_data *data);
+int		mouse_hook_turn(int x, int y, t_cub_data *data);
 float	ft_fabs(float value);
 int		ft_abs(int value);
 

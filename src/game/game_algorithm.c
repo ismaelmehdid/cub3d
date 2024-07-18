@@ -32,6 +32,7 @@ void	game_loop(t_cub_data *data)
 	mlx_hook(data->mlx.win_ptr, 3, 1L << 1, key_release, data);
 	mlx_hook(data->mlx.win_ptr, 17, 1L << 17,
 		(void *)free_everything, &(*data));
-	mlx_mouse_hook(data->mlx.win_ptr, mouse_hook, data);
+	mlx_hook(data->mlx.win_ptr, 6, 1L << 6, mouse_hook_turn, data);
+	mlx_mouse_hook(data->mlx.win_ptr, mouse_hook_shoot, data);
 	mlx_loop(data->mlx.mlx_ptr);
 }

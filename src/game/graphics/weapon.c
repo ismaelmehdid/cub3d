@@ -95,15 +95,3 @@ void	weapon_logic(t_cub_data *data, int gun_frame)
 	else if (data->gun.shoot_frame == 0)
 		put_weapon_img(data, data->gun.gun_images[gun_frame], x_y_offset);
 }
-
-int	mouse_hook(int button, int x, int y, t_cub_data *data)
-{
-	(void)x;
-	(void)y;
-	if (button == 1)
-	{
-		data->gun.is_shooting = true;
-		data->gun.shoot_frame = 0;
-	}
-	return (0);
-}
