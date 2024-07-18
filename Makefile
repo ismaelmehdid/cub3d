@@ -23,6 +23,7 @@ SRCS =  src/cub3D.c \
         src/game/graphics/floor_and_ceiling.c \
 		src/game/graphics/minimap.c \
 		src/game/graphics/raycasting.c \
+		src/game/graphics/doors.c \
 		src/game/graphics/walls_textures.c \
         src/game/graphics/weapon.c \
         src/game/utils/put_pixels.c \
@@ -32,11 +33,8 @@ SRCS =  src/cub3D.c \
         src/game/keys/key_controls.c \
         src/game/keys/process_motion.c \
         src/game/keys/process_turn.c \
-<<<<<<< HEAD
 		src/game/keys/process_usage.c \
-=======
         src/game/keys/mouse.c \
->>>>>>> d1e09f9a123bbb205d0ff2dd0cd68aba62f1d06a
         include/get_next_line/get_next_line.c \
         include/get_next_line/get_next_line_utils.c \
 

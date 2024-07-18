@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/18 15:45:10 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/18 20:49:33 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,9 @@ static void	dda_algorithm(t_cub_data *data, t_ray_cast *ray)
 			ray->side = 1; // hit horizontal line
 		}
 		map_value = data->settings.map[ray->map_y][ray->map_x];
-		if (map_value == '1' || map_value == 'C' || map_value == 'O')
-		{
+		if (map_value == '1' || map_value == 'C')
 			ray->hit = true;
-			if (map_value == 'C' || map_value == 'O')
-			{
-				ray->player_facing_door = true;
-				ray->y_faced_door = ray->map_y;
-				ray->x_faced_door = ray->map_x;
-			}
-		}
-		ray->door_hit = (map_value == 'C');
+		get_looking_door_values(ray, map_value);
 	}
 }
 
@@ -117,16 +109,16 @@ static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
 // for each columns of pixels, get the size of the wall with the player fov and draw it
 void	raycasting(t_cub_data *data)
 {
-	data->ray->player_facing_door = false;
-	data->ray->column = 0;
-	while (data->ray->column < data->mlx.win_width)
+	data->ray.player_facing_door = false;
+	data->ray.column = 0;
+	while (data->ray.column < data->mlx.win_width)
 	{
-		data->ray->map_x = (int)data->player_data.x; // initial position
-		data->ray->map_y = (int)data->player_data.y; // initial position
-		compute_raycasting_values(data, data->ray);
-		dda_algorithm(data, data->ray);
-		get_wall_dist(data, data->ray);
-		put_wall_texture(data, data->ray);
-		data->ray->column++;
+		data->ray.map_x = (int)data->player_data.x; // initial position
+		data->ray.map_y = (int)data->player_data.y; // initial position
+		compute_raycasting_values(data, &data->ray);
+		dda_algorithm(data, &data->ray);
+		get_wall_dist(data, &data->ray);
+		put_wall_texture(data, &data->ray);
+		data->ray.column++;
 	}
 }

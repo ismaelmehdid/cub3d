@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/18 16:09:57 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/18 21:07:02 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define STRAFE_SPEED 0.1f
 # define PLAYER_SPEED 0.2f
 # define HIT_BOX 0.2f
+# define MAX_DOOR_INTERACT_DISTANCE 1.7f
 
 //=== Textures ------------------------------------------------------------===//
 
@@ -223,26 +224,6 @@ typedef struct s_walls
 	t_img	door;
 }	t_walls;
 
-typedef struct s_cub_data
-{
-	struct s_cub_settings	settings;
-	struct s_cub_utils		utils;
-	struct s_mlx			mlx;
-	struct s_player_data	player_data;
-	struct s_ray_cast		*ray;
-	struct s_gun			gun;
-	struct s_walls			walls;
-	struct s_keys			keys;
-}	t_cub_data;
-
-typedef struct s_map_params // Specific struct helping for map parsing
-{
-	char		**old_map;
-	char		*line;
-	int			fd;
-	t_cub_data	*cub_data;
-}	t_map_params;
-
 typedef struct s_ray_cast
 {
 	int		column; // the pixel column we are casting the ray on	
@@ -270,6 +251,26 @@ typedef struct s_ray_cast
 	int		y_faced_door;
 	bool	hit;
 }	t_ray_cast;
+
+typedef struct s_cub_data
+{
+	struct s_cub_settings	settings;
+	struct s_cub_utils		utils;
+	struct s_mlx			mlx;
+	struct s_player_data	player_data;
+	struct s_ray_cast		ray;
+	struct s_gun			gun;
+	struct s_walls			walls;
+	struct s_keys			keys;
+}	t_cub_data;
+
+typedef struct s_map_params // Specific struct helping for map parsing
+{
+	char		**old_map;
+	char		*line;
+	int			fd;
+	t_cub_data	*cub_data;
+}	t_map_params;
 
 typedef struct s_bresenham
 {
@@ -303,6 +304,7 @@ int		render(t_cub_data *cub_data);
 void	raycasting(t_cub_data *data);
 void	put_wall_texture(t_cub_data *data, t_ray_cast *ray);
 void	weapon_logic(t_cub_data *data, int gun_frame);
+void	get_looking_door_values(t_ray_cast *ray, char map_value);
 void	minimap_frame(t_cub_data *data);
 void	move_forward(t_cub_data *data);
 void	move_backward(t_cub_data *data);
