@@ -31,6 +31,7 @@ SRCS =  src/cub3D.c \
         src/game/keys/key_controls.c \
         src/game/keys/process_motion.c \
         src/game/keys/process_turn.c \
+        src/game/keys/mouse.c \
         include/get_next_line/get_next_line.c \
         include/get_next_line/get_next_line_utils.c \
 

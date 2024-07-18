@@ -6,7 +6,7 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:30:41 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 15:26:27 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/18 15:47:07 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ static void	free_texture_path(t_cub_data *data)
 
 void	free_everything(t_cub_data *data)
 {
+	if (data->mlx.mlx_ptr && data->mlx.win_ptr)
+		mlx_mouse_show(data->mlx.mlx_ptr, data->mlx.win_ptr);
 	free_texture_path(data);
 	free_colors(data);
 	free_double_array(&data->settings.map);
