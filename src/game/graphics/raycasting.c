@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:09:53 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/18 20:49:33 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/21 17:20:07 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	dda_algorithm(t_cub_data *data, t_ray_cast *ray)
 	char	map_value;
 
 	ray->hit = false;
+	ray->door_hit = false;
 	while (ray->hit == false)
 	{
 		// checking which line is the shortest between x and y
@@ -95,6 +96,7 @@ static void	get_wall_dist(t_cub_data *data, t_ray_cast *ray)
 	else
 		ray->perp_wall_dist = (ray->map_y - data->player_data.y
 				+ (1 - ray->step_y) / 2) / ray->ray_dir_y;
+	ray->raw_wall_dist = ray->perp_wall_dist;
 	ray->perp_wall_dist
 		= ray->perp_wall_dist * cos(ray->ray_angle - data->player_data.angle); // correcting the fish eye effect
 	ray->line_height = (int)(data->mlx.win_height / ray->perp_wall_dist); // get the line height of the column to draw

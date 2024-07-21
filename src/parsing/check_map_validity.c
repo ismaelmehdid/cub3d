@@ -6,11 +6,19 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:31:28 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/18 13:37:38 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/21 17:26:09 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+static bool	is_explorable(char **map, int i, int j)
+{
+	return (map[j][i] == '0'
+		|| is_player_spawn_pos(map[j][i])
+		|| map[j][i] == 'O'
+		|| map[j][i] == 'C');
+}
 
 static bool	check_neighbours(char **map, int i, int j, int map_height)
 {
@@ -56,7 +64,7 @@ static void	check_map_closed(t_cub_data *cub_data, char **map)
 				&& map[j][i] != 'O' && map[j][i] != 'C'
 				&& !is_player_spawn_pos(map[j][i]))
 				cub_exit(MAP_WRONG_CHARACTER, cub_data);
-			if (map[j][i] == '0' || is_player_spawn_pos(map[j][i]))
+			if (is_explorable(map, i, j))
 			{
 				if (!check_neighbours(map, i, j, map_height))
 					cub_exit(MAP_UNCLOSED, cub_data);

@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:12:22 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/18 21:07:02 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/21 17:32:16 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ typedef struct s_ray_cast
 	int		step_x;
 	int		step_y;
 	int		side; // side of the wall hit 0 = vertical line, 1 = horizontal line
+	float	raw_wall_dist;
 	float	perp_wall_dist;
 	int		line_draw_start;
 	int		line_draw_end;
@@ -328,7 +329,6 @@ bool	is_player_spawn_pos(char c);
 void	reach_eof_to_avoid_leaks(char *line, int fd);
 void	load_mlx(t_cub_data *data);
 void	load_door_img(t_cub_data *data);
-void	set_null_to_ptrs(t_cub_data *data);
 int		scale_player_pos(float pos);
 void	ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
@@ -340,6 +340,7 @@ int		mouse_hook_shoot(int button, int x, int y, t_cub_data *data);
 int		mouse_hook_turn(int x, int y, t_cub_data *data);
 float	ft_fabs(float value);
 int		ft_abs(int value);
+void	init_data(struct s_cub_data *cub_data);
 
 //=== Exit messages -------------------------------------------------------===//
 

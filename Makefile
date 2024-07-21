@@ -30,6 +30,7 @@ SRCS =  src/cub3D.c \
 		src/game/utils/load_mlx.c \
 		src/game/utils/load_mlx2.c \
 		src/game/utils/utils.c \
+		src/game/utils/init_data.c \
         src/game/keys/key_controls.c \
         src/game/keys/process_motion.c \
         src/game/keys/process_turn.c \

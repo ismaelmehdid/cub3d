@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/17 16:30:44 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/21 17:42:18 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
 
-static void	draw_elem(t_cub_data *data, int i[2], int color, float offset_x_y[2])
+static void	draw_elem(
+	t_cub_data *data,
+	int i[2],
+	int color,
+	float offset_x_y[2])
 {
 	int	x;
 	int	y;
@@ -39,26 +43,27 @@ static void	draw_elem(t_cub_data *data, int i[2], int color, float offset_x_y[2]
 	}
 }
 
-
 static void	draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 {
 	dat->utils.minimap.cell_width = MINIMAP_SIZE / (2 * RANGE);
 	dat->utils.minimap.cell_height = MINIMAP_SIZE / (2 * RANGE);
-	offset_x_y[0] = dat->player_data.mm_x / dat->utils.minimap.cell_width - RANGE;
-	offset_x_y[1] = dat->player_data.mm_y / dat->utils.minimap.cell_height - RANGE;
+	offset_x_y[0]
+		= dat->player_data.mm_x / dat->utils.minimap.cell_width - RANGE;
+	offset_x_y[1]
+		= dat->player_data.mm_y / dat->utils.minimap.cell_height - RANGE;
 	i[0] = (int)offset_x_y[1];
 	while (i[0] < (int)offset_x_y[1] + 2 * RANGE)
 	{
 		i[1] = (int)offset_x_y[0];
 		while (i[1] < (int)offset_x_y[0] + 2 * RANGE)
 		{
-			if (i[0] >= 0 && i[0] < dat->utils.map_height &&
-				i[1] >= 0 && i[1] < ft_strlen(dat->settings.map[i[0]]))
+			if (i[0] >= 0 && i[0] < dat->utils.map_height
+				&& i[1] >= 0 && i[1] < ft_strlen(dat->settings.map[i[0]]))
 			{
 				if (dat->settings.map[i[0]][i[1]] == '1')
 					draw_elem(dat, i, WHITE, offset_x_y);
 				else if (dat->settings.map[i[0]][i[1]] == '0' ||
-						 dat->settings.map[i[0]][i[1]] == dat->player_data.pole)
+						dat->settings.map[i[0]][i[1]] == dat->player_data.pole)
 					draw_elem(dat, i, GREY, offset_x_y);
 			}
 			i[1]++;
@@ -66,7 +71,6 @@ static void	draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 		i[0]++;
 	}
 }
-
 
 static void	draw_player_on_minimap(t_cub_data *data, int x, int y)
 {
@@ -107,7 +111,6 @@ static void	draw_view_direction(t_cub_data *data)
 	bresenham_line_draw(data, start_x_y, end_x_y);
 }
 
-
 void	draw_minimap(t_cub_data *data, int x, int y)
 {
 	int		i[2];
@@ -130,7 +133,8 @@ void	draw_minimap(t_cub_data *data, int x, int y)
 	data->player_data.mm_x = scale_player_pos(data->player_data.x);
 	data->player_data.mm_y = scale_player_pos(data->player_data.y);
 	draw_map_elements(data, i, offset_x_y);
-	draw_player_on_minimap(data, data->player_data.mm_x, data->player_data.mm_y);
+	draw_player_on_minimap(data, data->player_data.mm_x,
+		data->player_data.mm_y);
 	draw_view_direction(data);
 	minimap_frame(data);
 }
