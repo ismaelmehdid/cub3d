@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:59:42 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/21 17:42:18 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/22 20:16:49 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,6 @@ static void	draw_elem(
 
 static void	draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 {
-	dat->utils.minimap.cell_width = MINIMAP_SIZE / (2 * RANGE);
-	dat->utils.minimap.cell_height = MINIMAP_SIZE / (2 * RANGE);
-	offset_x_y[0]
-		= dat->player_data.mm_x / dat->utils.minimap.cell_width - RANGE;
-	offset_x_y[1]
-		= dat->player_data.mm_y / dat->utils.minimap.cell_height - RANGE;
 	i[0] = (int)offset_x_y[1];
 	while (i[0] < (int)offset_x_y[1] + 2 * RANGE)
 	{
@@ -65,6 +59,9 @@ static void	draw_map_elements(t_cub_data *dat, int i[2], float offset_x_y[2])
 				else if (dat->settings.map[i[0]][i[1]] == '0' ||
 						dat->settings.map[i[0]][i[1]] == dat->player_data.pole)
 					draw_elem(dat, i, GREY, offset_x_y);
+				else if (dat->settings.map[i[0]][i[1]] == 'C' ||
+						dat->settings.map[i[0]][i[1]] == 'O')
+					draw_elem(dat, i, GREEN, offset_x_y);
 			}
 			i[1]++;
 		}
@@ -118,16 +115,15 @@ void	draw_minimap(t_cub_data *data, int x, int y)
 
 	i[0] = 0;
 	i[1] = 0;
-	offset_x_y[0] = 0;
-	offset_x_y[1] = 0;
+	offset_x_y[0]
+		= data->player_data.mm_x / data->utils.minimap.cell_width - RANGE;
+	offset_x_y[1]
+		= data->player_data.mm_y / data->utils.minimap.cell_height - RANGE;
 	while (y < 231)
 	{
-		x = 0;
-		while (x < 231)
-		{
+		x = -1;
+		while (x++, x < 231)
 			ft_mlx_pixel_put(data, x, y, BLACK);
-			x++;
-		}
 		y++;
 	}
 	data->player_data.mm_x = scale_player_pos(data->player_data.x);

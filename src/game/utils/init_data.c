@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
+/*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:28:44 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/21 17:37:38 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/22 19:48:01 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	set_null_to_ptrs(t_cub_data *data)
 	data->gun.shoot_frame = 0;
 	data->gun.is_shooting = false;
 	data->gun.last_shoot_time = 0;
+	data->walls.door.img_ptr = NULL;
 }
 
 static void	init_exit_functions_array(struct s_cub_data *cub_data)
@@ -64,21 +65,27 @@ static void	init_exit_functions_array(struct s_cub_data *cub_data)
 	cub_data->utils.exit_funcs[19] = other_msg;
 }
 
-static void	init_cub_data(struct s_cub_data *cub_data)
+static void	init_cub_data(struct s_cub_data *data)
 {
-	cub_data->utils.settings_already_set = 0;
-	cub_data->settings.ceiling_color = NULL;
-	cub_data->settings.floor_color = NULL;
-	cub_data->settings.e_texture_path = NULL;
-	cub_data->settings.n_texture_path = NULL;
-	cub_data->settings.s_texture_path = NULL;
-	cub_data->settings.w_texture_path = NULL;
-	cub_data->settings.map = NULL;
-	cub_data->utils.map_path = NULL;
-	cub_data->mlx.mlx_ptr = NULL;
-	cub_data->mlx.win_ptr = NULL;
-	cub_data->mlx.img = NULL;
-	cub_data->mlx.addr = NULL;
+	data->utils.settings_already_set = 0;
+	data->settings.ceiling_color = NULL;
+	data->settings.floor_color = NULL;
+	data->settings.e_texture_path = NULL;
+	data->settings.n_texture_path = NULL;
+	data->settings.s_texture_path = NULL;
+	data->settings.w_texture_path = NULL;
+	data->settings.map = NULL;
+	data->utils.map_path = NULL;
+	data->mlx.mlx_ptr = NULL;
+	data->mlx.win_ptr = NULL;
+	data->mlx.img = NULL;
+	data->mlx.addr = NULL;
+	data->walls.east.img_ptr = NULL;
+	data->walls.west.img_ptr = NULL;
+	data->walls.north.img_ptr = NULL;
+	data->walls.south.img_ptr = NULL;
+	data->utils.minimap.cell_width = MINIMAP_SIZE / (2 * RANGE);
+	data->utils.minimap.cell_height = MINIMAP_SIZE / (2 * RANGE);
 }
 
 void	init_data(struct s_cub_data *cub_data)
