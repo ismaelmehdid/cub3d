@@ -6,11 +6,11 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 13:54:33 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/22 20:16:35 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/22 20:23:35 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 void	load_door_img(t_cub_data *data)
 {

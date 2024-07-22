@@ -6,11 +6,11 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/22 20:17:57 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/22 20:23:30 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 static void	get_imgs_data(t_cub_data *d)
 {

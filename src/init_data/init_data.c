@@ -6,11 +6,11 @@
 /*   By: asyvash <asyvash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:28:44 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/22 19:48:01 by asyvash          ###   ########.fr       */
+/*   Updated: 2024/07/22 20:23:27 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 static void	set_null_to_ptrs(t_cub_data *data)
 {

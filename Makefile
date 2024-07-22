@@ -1,6 +1,9 @@
 NAME = cub3D
 
 SRCS =  src/cub3D.c \
+		src/init_data/load_mlx.c \
+		src/init_data/load_mlx2.c \
+        src/init_data/init_data.c \
         src/parsing/parsing.c \
         src/parsing/check_map_validity.c \
         src/parsing/extract_settings.c \
@@ -27,10 +30,7 @@ SRCS =  src/cub3D.c \
 		src/game/graphics/walls_textures.c \
         src/game/graphics/weapon.c \
         src/game/utils/put_pixels.c \
-		src/game/utils/load_mlx.c \
-		src/game/utils/load_mlx2.c \
 		src/game/utils/utils.c \
-		src/game/utils/init_data.c \
         src/game/keys/key_controls.c \
         src/game/keys/process_motion.c \
         src/game/keys/process_turn.c \
