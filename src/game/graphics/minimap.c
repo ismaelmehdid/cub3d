@@ -115,6 +115,8 @@ void	draw_minimap(t_cub_data *data, int x, int y)
 
 	i[0] = 0;
 	i[1] = 0;
+	data->player_data.mm_x = scale_player_pos(data->player_data.x);
+	data->player_data.mm_y = scale_player_pos(data->player_data.y);
 	offset_x_y[0]
 		= data->player_data.mm_x / data->utils.minimap.cell_width - RANGE;
 	offset_x_y[1]
@@ -126,8 +128,6 @@ void	draw_minimap(t_cub_data *data, int x, int y)
 			ft_mlx_pixel_put(data, x, y, BLACK);
 		y++;
 	}
-	data->player_data.mm_x = scale_player_pos(data->player_data.x);
-	data->player_data.mm_y = scale_player_pos(data->player_data.y);
 	draw_map_elements(data, i, offset_x_y);
 	draw_player_on_minimap(data, data->player_data.mm_x,
 		data->player_data.mm_y);
