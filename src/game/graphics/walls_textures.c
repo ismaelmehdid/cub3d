@@ -6,7 +6,7 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:35 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/21 22:49:30 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/23 23:07:32 by imehdid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static void	get_wall_texture_coords(
 {
 	double	wall_x;
 
-	if (ray->side == 0) // horizontal line hit so calculing the ray hit position with the y axis
+	if (ray->side == 0)
 		wall_x = data->player_data.y + ray->raw_wall_dist * ray->ray_dir_y;
-	else // vertical line hit so calculing the ray hit position with the y axis
+	else
 		wall_x = data->player_data.x + ray->raw_wall_dist * ray->ray_dir_x;
-	wall_x -= floor(wall_x); // get the fractional part of wall_x
-	ray->texture_x = (int)(wall_x * (double)(texture->width)); // get the exact x of texture_x by scaling wall_x with the texture size
-	if ((ray->side == 0 && ray->ray_dir_x < 0) || (ray->side == 1 && ray->ray_dir_y > 0)) // inverting the textures of the west and the south
+	wall_x -= floor(wall_x);
+	ray->texture_x = (int)(wall_x * (double)(texture->width));
+	if ((ray->side == 0 && ray->ray_dir_x < 0)
+		|| (ray->side == 1 && ray->ray_dir_y > 0))
 		ray->texture_x = texture->width - ray->texture_x - 1;
 }
 
@@ -45,12 +46,11 @@ static void	put_wall(t_cub_data *data, t_ray_cast *ray, t_img *texture)
 	get_wall_texture_coords(data, ray, texture);
 	while (y < ray->line_draw_end)
 	{
-		// these two lines are scaling the texture y coordinates to the screen
-		d = y * 256 - data->mlx.win_height * 128 + ray->line_height * 128; // getting fixed point numbers
-		ray->texture_y = ((d * texture->height) / ray->line_height) / 256; // scaling it and reconverting it to float
-		if (ray->texture_y < 0) // checking bounds
+		d = y - data->mlx.win_height / 2 + ray->line_height / 2;
+		ray->texture_y = ((d * texture->height) / ray->line_height);
+		if (ray->texture_y < 0)
 			ray->texture_y = 0;
-		if (ray->texture_y >= texture->height) // checking bounds
+		if (ray->texture_y >= texture->height)
 			ray->texture_y = texture->height - 1;
 		color = get_texture_color(texture, ray->texture_x, ray->texture_y);
 		ft_mlx_pixel_put(data, ray->column, y, color);
@@ -60,20 +60,20 @@ static void	put_wall(t_cub_data *data, t_ray_cast *ray, t_img *texture)
 
 void	put_wall_texture(t_cub_data *data, t_ray_cast *ray)
 {
-	if (ray->door_hit) // don't put texture if it's an open door
+	if (ray->door_hit)
 		put_wall(data, ray, &data->walls.door);
-	else if (ray->side == 0) // vertical line hit so west or east
+	else if (ray->side == 0)
 	{
-		if (ray->ray_dir_x > 0) // ray going right so hitting east
+		if (ray->ray_dir_x > 0)
 			put_wall(data, ray, &data->walls.east);
-		else // hitting west
+		else
 			put_wall(data, ray, &data->walls.west);
 	}
-	else // horizontal so north or south
+	else
 	{
-		if (ray->ray_dir_y > 0) // ray going up so hitting south
+		if (ray->ray_dir_y > 0)
 			put_wall(data, ray, &data->walls.south);
-		else // hitting north
+		else
 			put_wall(data, ray, &data->walls.north);
 	}
 }
