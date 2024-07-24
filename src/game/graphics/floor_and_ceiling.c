@@ -39,7 +39,7 @@ void	fill_background(t_cub_data *data, int x, int y)
 		x = 0;
 		while (x < data->mlx.win_width)
 		{
-			ft_mlx_pixel_put(data, x, y, get_floor_color(data));
+			ft_mlx_pixel_put(data, x, y, get_ceiling_color(data));
 			x++;
 		}
 		y++;
@@ -50,7 +50,7 @@ void	fill_background(t_cub_data *data, int x, int y)
 		x = 0;
 		while (x < data->mlx.win_width)
 		{
-			ft_mlx_pixel_put(data, x, y, get_ceiling_color(data));
+			ft_mlx_pixel_put(data, x, y, get_floor_color(data));
 			x++;
 		}
 		y++;
