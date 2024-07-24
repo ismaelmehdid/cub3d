@@ -88,6 +88,6 @@ void	store_map(t_cub_data *cub_data, char *old_line, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	check_map_validity(cub_data);
+	check_map_validity(cub_data, fd);
 	store_player_pos(cub_data);
 }

@@ -1,0 +1,23 @@
+
+NO ./game_data/textures/north.xpm
+SO ./game_data/textures/south.xpm
+WE ./game_data/textures/west.xpm
+EA ./game_data/textures/east.xpm
+
+F 135,206,235
+C 155,118,083
+
+111111111
+100001101
+101000101
+100010C01
+1010S0101
+100000101
+111101111
+1001C1111
+110101111
+110001101
+100000C01
+100100101
+100001101
+111111111

@@ -295,7 +295,7 @@ int		store_colors(
 			char id);
 void	store_map(t_cub_data *cub_data, char *line, int fd);
 void	store_player_pos(t_cub_data *cub_data);
-void	check_map_validity(t_cub_data *cub_data);
+void	check_map_validity(t_cub_data *cub_data, int fd);
 
 //=== Game ----------------------------------------------------------------===//
 

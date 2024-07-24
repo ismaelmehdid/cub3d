@@ -20,6 +20,11 @@ static bool	is_explorable(char **map, int i, int j)
 		|| map[j][i] == 'C');
 }
 
+static bool	is_valid_char(char c)
+{
+	return (c != '0' && c != '1' && c != ' ' && c != 'O' && c != 'C');
+}
+
 static bool	check_neighbours(char **map, int i, int j, int map_height)
 {
 	int	y;
@@ -46,28 +51,32 @@ static bool	check_neighbours(char **map, int i, int j, int map_height)
 	return (true);
 }
 
-static void	check_map_closed(t_cub_data *cub_data, char **map)
+static void	check_map_closed(
+	t_cub_data *cub_data,
+	char **map,
+	int map_height,
+	int fd)
 {
 	int	i;
 	int	j;
-	int	map_height;
 
 	i = 0;
 	j = 0;
-	map_height = double_array_len(map);
 	while (j < map_height)
 	{
 		i = 0;
 		while (map[j][i])
 		{
-			if (map[j][i] != '0' && map[j][i] != '1' && map[j][i] != ' '
-				&& map[j][i] != 'O' && map[j][i] != 'C'
-				&& !is_player_spawn_pos(map[j][i]))
-				cub_exit(MAP_WRONG_CHARACTER, cub_data);
-			if (is_explorable(map, i, j))
+			if (is_valid_char(map[j][i]) && !is_player_spawn_pos(map[j][i]))
 			{
-				if (!check_neighbours(map, i, j, map_height))
-					cub_exit(MAP_UNCLOSED, cub_data);
+				close(fd);
+				cub_exit(MAP_WRONG_CHARACTER, cub_data);
+			}
+			if (is_explorable(map, i, j)
+				&& !check_neighbours(map, i, j, map_height))
+			{
+				close(fd);
+				cub_exit(MAP_UNCLOSED, cub_data);
 			}
 			i++;
 		}
@@ -75,9 +84,16 @@ static void	check_map_closed(t_cub_data *cub_data, char **map)
 	}
 }
 
-void	check_map_validity(t_cub_data *cub_data)
+void	check_map_validity(t_cub_data *cub_data, int fd)
 {
 	if (!cub_data->settings.map)
+	{
+		close(fd);
 		cub_exit(MAP_MISSING, cub_data);
-	check_map_closed(cub_data, cub_data->settings.map);
+	}
+	check_map_closed(
+		cub_data,
+		cub_data->settings.map,
+		double_array_len(cub_data->settings.map),
+		fd);
 }
