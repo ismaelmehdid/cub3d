@@ -4,8 +4,8 @@ SO ./game_data/textures/south.xpm
 WE ./game_data/textures/west.xpm
 EA ./game_data/textures/east.xpm
 
-F 135,206,235
-C 155,118,083
+F 155,118,083
+C 135,206,235
 
 111111111
 100001101
