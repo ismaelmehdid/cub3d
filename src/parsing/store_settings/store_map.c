@@ -64,6 +64,12 @@ static void	allocate_new_double_array(t_map_params *params)
 	params->old_map = new;
 }
 
+static void	no_map(t_cub_data *cub_data, int fd)
+{
+	close(fd);
+	cub_exit(NO_MAP_IN_FILE, cub_data);
+}
+
 void	store_map(t_cub_data *cub_data, char *old_line, int fd)
 {
 	char			*line;
@@ -72,7 +78,7 @@ void	store_map(t_cub_data *cub_data, char *old_line, int fd)
 	line = old_line;
 	params.fd = fd;
 	if (!line)
-		cub_exit(NO_MAP_IN_FILE, cub_data);
+		no_map(cub_data, fd);
 	while (line && is_only_spaces(line))
 	{
 		free(line);
