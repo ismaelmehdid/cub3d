@@ -3,8 +3,8 @@ SO ./game_data/textures/poles_textures/south.xpm
 WE ./game_data/textures/poles_textures/west.xpm
 EA ./game_data/textures/poles_textures/east.xpm
 
-F 255,255,255
-C 0,0,25
+F 0,0,25
+C 255,255,255
 
 111111111
 100000101
