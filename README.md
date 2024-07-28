@@ -5,6 +5,7 @@
 ## 💡 About the project
 
 > This project is a reproduction of ``wolfenstein 3D`` in ``C`` using ``raycasting``.
+> ![3dgame](https://s10.gifyu.com/images/S5lrW.gif)
 
 ### Instructions
 
