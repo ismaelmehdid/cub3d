@@ -40,7 +40,7 @@ Controls for movement and rotation are:
 - `D`: strafe right
 - `left arrow`: rotate left
 - `right arrow`: rotate right
-- `mouse`: rotate by moving the mouse (bonus only)
+- `mouse`: rotate by moving the mouse
 
 ---
 This project was developed collaboratively with [Andrii Syvash](https://github.com/redarling).
