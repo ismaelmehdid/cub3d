@@ -41,6 +41,7 @@ Controls for movement and rotation are:
 - `left arrow`: rotate left
 - `right arrow`: rotate right
 - `mouse`: rotate by moving the mouse
+- `left-click`: shoot
 
 ---
 This project was developed collaboratively with [Andrii Syvash](https://github.com/redarling).
