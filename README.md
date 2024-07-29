@@ -38,6 +38,7 @@ Controls for movement and rotation are:
 - `S`: move backward
 - `A`: strafe left
 - `D`: strafe right
+- `E`: open/close a door
 - `left arrow`: rotate left
 - `right arrow`: rotate right
 - `mouse`: rotate by moving the mouse
