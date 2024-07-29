@@ -2,7 +2,7 @@ NAME = cub3D
 
 SRCS =  src/cub3D.c \
 		src/init_data/load_mlx.c \
-		src/init_data/load_mlx2.c \
+		src/init_data/get_imgs_addr.c \
         src/init_data/init_data.c \
         src/parsing/parsing.c \
         src/parsing/check_map_validity.c \

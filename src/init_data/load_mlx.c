@@ -6,52 +6,11 @@
 /*   By: imehdid <ismaelmehdid@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:57:31 by imehdid           #+#    #+#             */
-/*   Updated: 2024/07/23 23:22:31 by imehdid          ###   ########.fr       */
+/*   Updated: 2024/07/29 12:31:54 by asyvash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-static void	get_imgs_adresses(t_cub_data *data)
-{
-	data->gun.std.data = mlx_get_data_addr(
-			data->gun.std.img_ptr, &data->gun.std.bpp,
-			&data->gun.std.size_line, &data->gun.std.endian);
-	data->gun.std2.data = mlx_get_data_addr(
-			data->gun.std2.img_ptr, &data->gun.std2.bpp,
-			&data->gun.std2.size_line, &data->gun.std2.endian);
-	data->gun.std4.data = mlx_get_data_addr(
-			data->gun.std4.img_ptr, &data->gun.std4.bpp,
-			&data->gun.std4.size_line, &data->gun.std4.endian);
-	data->gun.std3.data = mlx_get_data_addr(
-			data->gun.std3.img_ptr, &data->gun.std3.bpp,
-			&data->gun.std3.size_line, &data->gun.std3.endian);
-	data->gun.shoot1.data = mlx_get_data_addr(
-			data->gun.shoot1.img_ptr, &data->gun.shoot1.bpp,
-			&data->gun.shoot1.size_line, &data->gun.shoot1.endian);
-	data->gun.shoot2.data = mlx_get_data_addr(
-			data->gun.shoot2.img_ptr, &data->gun.shoot2.bpp,
-			&data->gun.shoot2.size_line, &data->gun.shoot2.endian);
-	data->gun.shoot3.data = mlx_get_data_addr(
-			data->gun.shoot3.img_ptr, &data->gun.shoot3.bpp,
-			&data->gun.shoot3.size_line, &data->gun.shoot3.endian);
-	data->utils.minimap.frame.data = mlx_get_data_addr(
-			data->utils.minimap.frame.img_ptr, &data->utils.minimap.frame.bpp,
-			&data->utils.minimap.frame.size_line,
-			&data->utils.minimap.frame.endian);
-}
-
-static void	get_imgs_data(t_cub_data *data)
-{
-	get_imgs_adresses(data);
-	data->gun.shoot_images[0] = &data->gun.shoot1;
-	data->gun.shoot_images[1] = &data->gun.shoot2;
-	data->gun.shoot_images[2] = &data->gun.shoot3;
-	data->gun.shoot_images[3] = &data->gun.shoot1;
-	data->gun.shoot_images[4] = &data->gun.shoot1;
-	data->gun.gun_images[0] = &data->gun.std3;
-	data->gun.gun_images[1] = &data->gun.std4;
-}
 
 static void	load_textures_imgs(t_cub_data *data)
 {
@@ -74,11 +33,6 @@ static void	load_textures_imgs(t_cub_data *data)
 			data->mlx.mlx_ptr, FRAME,
 			&data->utils.minimap.frame.width,
 			&data->utils.minimap.frame.height);
-	if (!data->gun.shoot1.img_ptr || !data->gun.shoot2.img_ptr
-		|| !data->gun.shoot3.img_ptr || !data->gun.std.img_ptr
-		|| !data->gun.std2.img_ptr || !data->gun.std3.img_ptr
-		|| !data->gun.std4.img_ptr || !data->utils.minimap.frame.img_ptr)
-		cub_exit(MLX_ERROR, data);
 }
 
 static void	load_walls_imgs(t_cub_data *data)
@@ -86,27 +40,32 @@ static void	load_walls_imgs(t_cub_data *data)
 	data->walls.north.img_ptr = mlx_xpm_file_to_image(
 			data->mlx.mlx_ptr, data->settings.n_texture_path,
 			&data->walls.north.width, &data->walls.north.height);
-	data->walls.north.data = mlx_get_data_addr(
-			data->walls.north.img_ptr, &data->walls.north.bpp,
-			&data->walls.north.size_line, &data->walls.north.endian);
 	data->walls.south.img_ptr = mlx_xpm_file_to_image(
 			data->mlx.mlx_ptr, data->settings.s_texture_path,
 			&data->walls.south.width, &data->walls.south.height);
-	data->walls.south.data = mlx_get_data_addr(
-			data->walls.south.img_ptr, &data->walls.south.bpp,
-			&data->walls.south.size_line, &data->walls.south.endian);
 	data->walls.east.img_ptr = mlx_xpm_file_to_image(
 			data->mlx.mlx_ptr, data->settings.e_texture_path,
 			&data->walls.east.width, &data->walls.east.height);
-	data->walls.east.data = mlx_get_data_addr(
-			data->walls.east.img_ptr, &data->walls.east.bpp,
-			&data->walls.east.size_line, &data->walls.east.endian);
 	data->walls.west.img_ptr = mlx_xpm_file_to_image(
 			data->mlx.mlx_ptr, data->settings.w_texture_path,
 			&data->walls.west.width, &data->walls.west.height);
-	data->walls.west.data = mlx_get_data_addr(
-			data->walls.west.img_ptr, &data->walls.west.bpp,
-			&data->walls.west.size_line, &data->walls.west.endian);
+	data->walls.door.img_ptr = mlx_xpm_file_to_image(
+			data->mlx.mlx_ptr, DOOR,
+			&data->walls.door.width, &data->walls.door.height);
+}
+
+static void	check_loaded_imgs(t_cub_data *data)
+{
+	if (!data->walls.west.img_ptr || !data->walls.east.img_ptr || \
+		!data->walls.south.img_ptr || !data->walls.north.img_ptr)
+		cub_exit(MLX_ERROR, data);
+	if (!data->gun.shoot1.img_ptr || !data->gun.shoot2.img_ptr
+		|| !data->gun.shoot3.img_ptr || !data->gun.std.img_ptr
+		|| !data->gun.std2.img_ptr || !data->gun.std3.img_ptr
+		|| !data->gun.std4.img_ptr || !data->utils.minimap.frame.img_ptr)
+		cub_exit(MLX_ERROR, data);
+	if (!data->walls.door.img_ptr)
+		cub_exit(MLX_ERROR, data);
 }
 
 void	load_mlx(t_cub_data *data)
@@ -129,6 +88,6 @@ void	load_mlx(t_cub_data *data)
 			&data->mlx.bits, &data->mlx.line_len, &data->mlx.edian);
 	load_walls_imgs(data);
 	load_textures_imgs(data);
-	get_imgs_data(data);
-	load_door_img(data);
+	check_loaded_imgs(data);
+	get_imgs_addr(data);
 }

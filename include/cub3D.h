@@ -329,7 +329,7 @@ void	free_double_array(char ***array);
 bool	is_player_spawn_pos(char c);
 void	reach_eof_to_avoid_leaks(char *line, int fd);
 void	load_mlx(t_cub_data *data);
-void	load_door_img(t_cub_data *data);
+void	get_imgs_addr(t_cub_data *data);
 int		scale_player_pos(float pos);
 void	ft_mlx_pixel_put(t_cub_data *data, int x, int y, int color);
 void	bresenham_line_draw(t_cub_data *data, int x0_y0[2], int x1_y1[2]);
