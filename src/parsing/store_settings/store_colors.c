@@ -57,7 +57,7 @@ static bool	are_valid_rgb_values(char **rgb_strings)
 		return (false);
 	while (i < 3)
 	{
-		if (ft_atoi(rgb_strings[i]) > 255)
+		if (ft_strlen(rgb_strings[i]) > 3 || ft_atoi(rgb_strings[i]) > 255)
 			return (false);
 		i++;
 	}

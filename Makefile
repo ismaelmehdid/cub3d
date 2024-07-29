@@ -58,6 +58,8 @@ CFLAGS = -Wall -Wextra -Werror -Iinclude
 
 all: $(NAME)
 
+bonus: all
+
 $(NAME): $(OBJS) $(LIBFT_DIR) $(MLX_DIR)/libmlx.a
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_LINK) $(LIBFT_DIR) -o $(NAME)
 	$(CLEAR)

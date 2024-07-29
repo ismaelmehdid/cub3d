@@ -1,4 +1,4 @@
-NO ./game_data/textures/poles_textures/north.xpm 
+NO ./game_data/textures/poles_textures/north.xpm
 SO ./game_data/textures/poles_textures/south.xpm
 WE ./game_data/textures/poles_textures/west.xpm
 EA ./game_data/textures/poles_textures/east.xpm
@@ -10,6 +10,6 @@ C 255,255,255
 100000101
 100000101
 100000C01
-100C00101
+100000101
 1W0000101
 111111111

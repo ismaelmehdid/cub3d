@@ -65,15 +65,15 @@ void	put_wall_texture(t_cub_data *data, t_ray_cast *ray)
 	else if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			put_wall(data, ray, &data->walls.east);
-		else
 			put_wall(data, ray, &data->walls.west);
+		else
+			put_wall(data, ray, &data->walls.east);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			put_wall(data, ray, &data->walls.south);
-		else
 			put_wall(data, ray, &data->walls.north);
+		else
+			put_wall(data, ray, &data->walls.south);
 	}
 }
